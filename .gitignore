@@ -1,0 +1,11 @@
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.tmp/
+*.xpr.zip
+*.bit
+*.ltx
+ip_upgrade
