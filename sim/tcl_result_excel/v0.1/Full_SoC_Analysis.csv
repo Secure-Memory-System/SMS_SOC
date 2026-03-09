@@ -1,0 +1,2 @@
+Project,Device,LUT_Used,LUT_Util_%,FF_Used,FF_Util_%,WNS_ns,TNS_ns,WHS_ns,Total_Power_W,Max_Congestion_%,Worst_Logic_Level
+myip_zybo_z7_20,xc7z020clg400-1,30346,53200,51671,106400,0.000,0.000,0.000,1.640,0,51
