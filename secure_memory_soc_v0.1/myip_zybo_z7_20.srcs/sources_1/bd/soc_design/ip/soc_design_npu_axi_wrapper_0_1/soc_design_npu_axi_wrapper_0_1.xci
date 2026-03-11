@@ -208,7 +208,6 @@
       },
       "memory_maps": {
         "s_axi": {
-          "display_name": "s_axi",
           "address_blocks": {
             "reg0": {
               "base_address": "0x0",

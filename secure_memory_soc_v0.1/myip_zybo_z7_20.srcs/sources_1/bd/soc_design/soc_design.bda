@@ -256,7 +256,7 @@
                 "SX": "/aes_dec_axi_wrapper_0",
                 "SI": "s_axi",
                 "SS": "reg0",
-                "SV": "xilinx.com:user:aes_dec_axi_wrapper:1.0",
+                "SV": "xilinx.com:user:aes_dec_axi_wrapper:1.1",
                 "TM": "both",
                 "TU": "register"
             },
@@ -274,7 +274,7 @@
                 "SX": "/aes_enc_axi_wrapper_0",
                 "SI": "s_axi",
                 "SS": "reg0",
-                "SV": "xilinx.com:user:aes_enc_axi_wrapper:1.0",
+                "SV": "xilinx.com:user:aes_enc_axi_wrapper:1.1",
                 "TM": "both",
                 "TU": "register"
             },
