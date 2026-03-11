@@ -239,7 +239,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>88ddc897</spirit:value>
+            <spirit:value>b5795f5f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -255,7 +255,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>88ddc897</spirit:value>
+            <spirit:value>b5795f5f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -621,11 +621,11 @@
       </xilinx:taxonomies>
       <xilinx:displayName>aes_enc_axi_wrapper_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:user:aes_enc_axi_wrapper:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2026-03-09T07:21:16Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2026-03-10T03:41:56Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
       </xilinx:tags>
@@ -634,7 +634,7 @@
       <xilinx:xilinxVersion>2024.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="6538b22b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="c930e363"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ca420a66"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f8278e14"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="0faa26c6"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d5854859"/>
     </xilinx:packagingInfo>

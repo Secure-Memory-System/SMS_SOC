@@ -8,7 +8,7 @@
 module read_master # (
     parameter integer C_M_AXI_ID_WIDTH   = 1,
     parameter integer C_M_AXI_ADDR_WIDTH = 32,
-    parameter integer C_M_AXI_DATA_WIDTH = 32
+    parameter integer C_M_AXI_DATA_WIDTH = 128
 )(
     input wire clk,
     input wire reset_n,
@@ -22,7 +22,7 @@ module read_master # (
     // --- FIFO 인터페이스 ---
     input wire i_fifo_full,            // FIFO 가득 참 신호 (Backpressure 용)
     output wire o_fifo_push,           // FIFO 쓰기 활성화 신호
-    output wire [31:0] o_r_data,       // FIFO로 보낼 읽기 데이터
+    output wire [C_M_AXI_DATA_WIDTH-1:0] o_r_data,       // FIFO로 보낼 읽기 데이터
 
     // --- AXI4-Full: Read Address Channel (AR) ---
     output wire [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_araddr,  // 읽기 주소
@@ -66,25 +66,25 @@ module read_master # (
     assign next_boundary_addr = (r_current_addr & 32'hFFFF_F000) + 32'h1000;
     assign dist_to_boundary   = next_boundary_addr - r_current_addr;
     
-    // 버스트 크기 결정: 한 번의 버스트는 최대 64바이트(16 Words)로 제한
-    assign max_burst_bytes    = (r_remaining_bytes > 64) ? 64 : r_remaining_bytes;
+    // 버스트 크기 결정: 한 번의 버스트는 최대 256바이트(16 Words)로 제한
+    assign max_burst_bytes    = (r_remaining_bytes > 256) ? 256 : r_remaining_bytes;
     
     // 경계 침범 방지: 경계까지 남은 거리와 계획된 버스트 크기 중 작은 쪽 선택
     assign calc_len_bytes     = (max_burst_bytes > dist_to_boundary) ? dist_to_boundary : max_burst_bytes;
     
     // 현재 전송 바이트 수: (버스트 개수 + 1) * 4바이트 (32bit 폭 기준)
-    assign current_transfer_bytes = {22'd0, r_burst_len, 2'b00};
+    assign current_transfer_bytes = {20'd0, r_burst_len, 4'b0000};
 
     // -------------------------------------------------------------------------
     // 2. AXI 주소 채널 출력 설정 (Output Logic)
     // -------------------------------------------------------------------------
-    assign m_axi_arsize  = 3'b010;     // 4 Bytes (32-bit) 전송 고정
+    assign m_axi_arsize  = 3'b100;     // 4 Bytes (32-bit) 전송 고정
     assign m_axi_arburst = 2'b01;     // INCR 타입 (주소 증가 방식) 버스트
     assign m_axi_araddr  = r_current_addr;
     assign m_axi_arvalid = arvalid_reg; 
     
     // AxLEN 계산: (전송바이트 / 4) - 1 (0이면 1개 전송, 15이면 16개 전송)
-    assign m_axi_arlen   = (calc_len_bytes[9:2] > 0) ? (calc_len_bytes[9:2] - 1) : 0;
+    assign m_axi_arlen   = (calc_len_bytes[9:4] > 0) ? (calc_len_bytes[9:4] - 1) : 0;
     
     // RREADY 제어: 데이터 단계이고 FIFO가 가득 차지 않았을 때만 데이터를 받을 준비가 됨
     assign m_axi_rready  = (current_state == DATA_PHASE) && (!i_fifo_full);
@@ -184,7 +184,7 @@ module read_master # (
                 ADDR_PHASE: begin
                     // 주소 전송 시 이번 버스트에서 처리할 길이(arlen + 1)를 기록
                     if (m_axi_arvalid && m_axi_arready) begin
-                        r_burst_len <= calc_len_bytes[9:2];
+                        r_burst_len <= calc_len_bytes[9:4];
                     end
                 end
 

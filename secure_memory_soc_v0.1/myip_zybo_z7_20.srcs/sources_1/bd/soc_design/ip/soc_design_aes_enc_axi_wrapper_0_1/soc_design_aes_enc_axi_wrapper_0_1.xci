@@ -3,8 +3,8 @@
   "ip_inst": {
     "xci_name": "soc_design_aes_enc_axi_wrapper_0_1",
     "cell_name": "aes_enc_axi_wrapper_0",
-    "component_reference": "xilinx.com:user:aes_enc_axi_wrapper:1.0",
-    "ip_revision": "4",
+    "component_reference": "xilinx.com:user:aes_enc_axi_wrapper:1.1",
+    "ip_revision": "1",
     "gen_directory": "../../../../../../myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_enc_axi_wrapper_0_1",
     "parameters": {
       "component_parameters": {
@@ -25,7 +25,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "4" } ],
+        "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_enc_axi_wrapper_0_1" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

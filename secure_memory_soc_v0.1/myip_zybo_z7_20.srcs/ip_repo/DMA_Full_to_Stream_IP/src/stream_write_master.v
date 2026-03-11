@@ -9,7 +9,7 @@
  *    데이터가 FIFO에 들어오는 즉시 i_w_data에 출력되는 방식.
  */
 module stream_write_master #(
-    parameter integer C_M_AXIS_DATA_WIDTH = 32   // 기본 32bit, 필요 시 128bit로 변경
+    parameter integer C_M_AXIS_DATA_WIDTH = 128   // 기본 32bit, 필요 시 128bit로 변경
 )(
     input  wire clk,
     input  wire reset_n,
@@ -25,7 +25,7 @@ module stream_write_master #(
     input  wire [C_M_AXIS_DATA_WIDTH-1:0] i_w_data,  // FIFO에서 꺼낸 데이터
 
     // --- AXI4-Stream Master ---
-    output wire [C_M_AXIS_DATA_WIDTH-1:0] m_axis_tdata,   // 전송 데이터
+    output wire [C_M_AXIS_DATA_WIDTH-1 : 0] m_axis_tdata,   // 전송 데이터
     output wire        m_axis_tvalid,   // 데이터 유효 신호
     input  wire        m_axis_tready,   // 수신측 준비 완료 신호
     output wire        m_axis_tlast     // 마지막 데이터 표시

@@ -46,7 +46,7 @@ module aes_128_core (
     wire [127:0] sbox_in;
     wire [127:0] sbox_out;
 
-    genvar i;
+    genvar i; // elaborate design에서 사용되나 simulation time에선 사라짐
     generate
         for (i = 0; i < 16; i = i + 1) begin : sbox_gen
             sbox u_sbox_inst (
@@ -167,7 +167,7 @@ module sbox (
     output reg  [7:0] data_out
 );
     always @(*) begin
-        case (data_in)
+        case (data_in) // AES 표준(FIPS 197)
             8'h00: data_out = 8'h63; 8'h01: data_out = 8'h7c; 8'h02: data_out = 8'h77; 8'h03: data_out = 8'h7b;
             8'h04: data_out = 8'hf2; 8'h05: data_out = 8'h6b; 8'h06: data_out = 8'h6f; 8'h07: data_out = 8'hc5;
             8'h08: data_out = 8'h30; 8'h09: data_out = 8'h01; 8'h0a: data_out = 8'h67; 8'h0b: data_out = 8'h2b;

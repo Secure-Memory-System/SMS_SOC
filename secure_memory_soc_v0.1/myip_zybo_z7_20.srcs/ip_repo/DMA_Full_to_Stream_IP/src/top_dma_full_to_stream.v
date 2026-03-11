@@ -23,8 +23,8 @@ module top_dma_full_to_stream #(
     parameter integer C_S_AXI_DATA_WIDTH    = 32,
     parameter integer C_S_AXI_ADDR_WIDTH    = 5,
     parameter integer C_M_AXI_ADDR_WIDTH    = 32,
-    parameter integer C_M_AXI_DATA_WIDTH    = 32,
-    parameter integer C_M_AXIS_DATA_WIDTH   = 32
+    parameter integer C_M_AXI_DATA_WIDTH    = 128,
+    parameter integer C_M_AXIS_DATA_WIDTH   = 128
 )(
     input  wire aclk,
     input  wire aresetn,
@@ -54,14 +54,14 @@ module top_dma_full_to_stream #(
     // 2. AXI4-Full Master Read (메모리 → DMA)
     // =========================================================
     // AR Channel
-    output wire [C_M_AXI_ADDR_WIDTH-1:0]  m_axi_araddr,
+    output wire [C_M_AXI_ADDR_WIDTH-1:0]   m_axi_araddr,
     output wire [7:0]                      m_axi_arlen,
     output wire [2:0]                      m_axi_arsize,
     output wire [1:0]                      m_axi_arburst,
     output wire                            m_axi_arvalid,
     input  wire                            m_axi_arready,
     // R Channel
-    input  wire [C_M_AXI_DATA_WIDTH-1:0]  m_axi_rdata,
+    input  wire [C_M_AXI_DATA_WIDTH-1:0]   m_axi_rdata,
     input  wire                            m_axi_rlast,
     input  wire                            m_axi_rvalid,
     output wire                            m_axi_rready,
@@ -69,7 +69,7 @@ module top_dma_full_to_stream #(
     // =========================================================
     // 3. AXI4-Stream Master (DMA → NPU 또는 복호화 IP)
     // =========================================================
-    output wire [C_M_AXIS_DATA_WIDTH-1:0] m_axis_tdata,
+    output wire [C_M_AXIS_DATA_WIDTH-1 : 0]m_axis_tdata,
     output wire                            m_axis_tvalid,
     input  wire                            m_axis_tready,
     output wire                            m_axis_tlast,
@@ -177,8 +177,8 @@ module top_dma_full_to_stream #(
     wire        fifo_empty;
     wire        fifo_wr_en;
     wire        fifo_rd_en;
-    wire [31:0] fifo_din;
-    wire [31:0] fifo_dout;
+    wire [127:0] fifo_din;
+    wire [127:0] fifo_dout;
 
     // read_master → FIFO
     wire        read_done;
@@ -227,7 +227,10 @@ module top_dma_full_to_stream #(
     // [Part 4] FIFO 인스턴스
     // Synchronous FIFO / FWFT / 32bit / Depth 1024
     // =========================================================
-    fifo_sync_fwft u_fifo (
+    fifo_sync_fwft #(
+        .DATA_WIDTH (128),   // ← 128비트
+        .FIFO_DEPTH (256)    // ← 32bit×1024 = 128bit×256 (4KB 동일 유지)
+    ) u_fifo (
         .clk    (aclk),
         .srst   (~aresetn),
         .din    (fifo_din),

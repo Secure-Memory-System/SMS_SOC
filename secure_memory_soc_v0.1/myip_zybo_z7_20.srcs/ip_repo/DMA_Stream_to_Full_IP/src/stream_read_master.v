@@ -9,7 +9,7 @@
  * ※ 흐름 제어: FIFO가 가득 차면 tready를 내려 업스트림(암호화IP)을 자동으로 멈춤.
  */
 module stream_read_master #(
-    parameter integer C_S_AXIS_DATA_WIDTH = 32   // 기본 32bit, 필요 시 128bit로 변경
+    parameter integer C_S_AXIS_DATA_WIDTH = 128   // 기본 32bit, 필요 시 128bit로 변경
 )(
     input  wire clk,
     input  wire reset_n,

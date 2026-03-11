@@ -22,7 +22,7 @@ module top_dma_stream_to_full #(
     parameter integer C_S_AXI_DATA_WIDTH    = 32,
     parameter integer C_S_AXI_ADDR_WIDTH    = 5,
     parameter integer C_M_AXI_ADDR_WIDTH    = 32,
-    parameter integer C_M_AXI_DATA_WIDTH    = 32,
+    parameter integer C_M_AXI_DATA_WIDTH    = 128,
     parameter integer C_S_AXIS_DATA_WIDTH   = 128  // 암호화 IP 출력이 128bit
 )(
     input  wire aclk,
@@ -177,12 +177,12 @@ module top_dma_stream_to_full #(
     wire [31:0] trf_len   = slv_reg3;
 
     // FIFO 내부 배선
-    wire        fifo_full;
-    wire        fifo_empty;
-    wire        fifo_wr_en;
-    wire        fifo_rd_en;
-    wire [31:0] fifo_din;
-    wire [31:0] fifo_dout;
+    wire         fifo_full;
+    wire         fifo_empty;
+    wire         fifo_wr_en;
+    wire         fifo_rd_en;
+    wire [127:0] fifo_din;
+    wire [127:0] fifo_dout;
 
     // 완료 신호
     wire        stream_recv_done;   // stream_read_master 수신 완료
@@ -223,7 +223,10 @@ module top_dma_stream_to_full #(
     // [Part 4] FIFO 인스턴스
     // Synchronous FIFO / FWFT / 32bit / Depth 1024
     // =========================================================
-    fifo_sync_fwft u_fifo (
+    fifo_sync_fwft #(
+    .DATA_WIDTH (128),  // ← 128비트
+    .FIFO_DEPTH (256)   // ← 32bit×1024 = 4KB = 128bit×256 (용량 동일 유지)
+    ) u_fifo (
         .clk    (aclk),
         .srst   (~aresetn),
         .din    (fifo_din),

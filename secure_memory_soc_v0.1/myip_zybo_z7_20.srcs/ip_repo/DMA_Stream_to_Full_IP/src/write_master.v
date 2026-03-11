@@ -2,7 +2,7 @@
 
 module write_master # (
     parameter integer C_M_AXI_ADDR_WIDTH = 32,
-    parameter integer C_M_AXI_DATA_WIDTH = 32
+    parameter integer C_M_AXI_DATA_WIDTH = 128
 )(
     input wire clk,         // 시스템 클럭
     input wire reset_n,     // 리셋 신호
@@ -21,7 +21,7 @@ module write_master # (
     // AXI4-Full Master (AW Channel)
     output wire [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_awaddr,    // [쓰기 주소] 데이터를 쓸 타겟 주소
     output wire [7 : 0] m_axi_awlen,                        // [버스트 길이] 한 번에 몇 개를 보낼지 (실제 개수 - 1)
-    output wire [2 : 0] m_axi_awsize,                       // [버스트 크기] 데이터 한 칸의 크기 (4Byte/32bit)
+    output wire [3 : 0] m_axi_awsize,                       // [버스트 크기] 데이터 한 칸의 크기 (4Byte/32bit)
     output wire [1 : 0] m_axi_awburst,                      // [버스트 타입] 주소 증가 방식 (주소 4씩 증가)
     output wire m_axi_awvalid,          // [유효 신호] 주소 정보를 보냄
     input  wire m_axi_awready,          // [준비 완료] 주소 받을 준비 상태
@@ -68,19 +68,19 @@ module write_master # (
     assign dist_to_boundary   = next_boundary_addr - r_current_addr;
     assign max_burst_bytes    = (r_remaining_bytes > 64) ? 64 : r_remaining_bytes;
     assign calc_len_bytes     = (max_burst_bytes > dist_to_boundary) ? dist_to_boundary : max_burst_bytes;
-    assign current_transfer_bytes = {22'd0, r_burst_len, 2'b00}; 
+    assign current_transfer_bytes = {20'd0, r_burst_len, 4'b0000};
 
     // -------------------------------------------------------------------------
     // 2. AXI Output Assignments
     // -------------------------------------------------------------------------
-    assign m_axi_awsize  = 3'b010;
+    assign m_axi_awsize  = 3'b100;
     assign m_axi_awburst = 2'b01;
     assign m_axi_awaddr  = r_current_addr;
     assign m_axi_awvalid = awvalid_reg;
-    assign m_axi_awlen   = (calc_len_bytes[9:2] > 0) ? (calc_len_bytes[9:2] - 1) : 0;
+    assign m_axi_awlen   = (calc_len_bytes[9:4] > 0) ? (calc_len_bytes[9:4] - 1) : 0;
 
     assign m_axi_wdata   = i_w_data;
-    assign m_axi_wstrb   = 4'hF;
+    assign m_axi_wstrb   = 16'hFFFF;
     assign m_axi_wvalid  = (current_state == W_PHASE) && (!i_fifo_empty);
     assign m_axi_wlast   = (current_state == W_PHASE) && (w_beat_count == r_burst_len - 1);
 
