@@ -139,30 +139,33 @@ module aes_key_expansion(
     // --------------------------------------------------
     reg [127:0] key_mem [0:10];
     reg [3:0]   calc_idx;        // 현재 계산 중인 라운드 인덱스
+    
+    reg [127:0] prev_key;
 
     // W0~W3 중간 wire (같은 사이클 내 의존성 해결)
-    wire [31:0] w0_next =
-        key_mem[calc_idx-1][127:96] ^
-        sub_word({key_mem[calc_idx-1][23:0],
-                  key_mem[calc_idx-1][31:24]}) ^
+    wire [31:0] w0_next = prev_key[127:96] ^
+        sub_word({prev_key[23:0], prev_key[31:24]}) ^
         {rcon_func(calc_idx), 24'h0};
-    wire [31:0] w1_next = key_mem[calc_idx-1][95:64] ^ w0_next;
-    wire [31:0] w2_next = key_mem[calc_idx-1][63:32] ^ w1_next;
-    wire [31:0] w3_next = key_mem[calc_idx-1][31:0]  ^ w2_next;
+    wire [31:0] w1_next = prev_key[95:64] ^ w0_next;
+    wire [31:0] w2_next = prev_key[63:32] ^ w1_next;
+    wire [31:0] w3_next = prev_key[31:0]  ^ w2_next;
     
     // ★ always @(*) → always @(posedge clk or negedge reset_n) 으로 변경
     always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
             ready    <= 1'b0;
             calc_idx <= 4'd0;
+            prev_key <= 128'd0;
         end
         else if (load) begin
             key_mem[0] <= initial_key;
+            prev_key   <= initial_key;
             calc_idx   <= 4'd1;
             ready      <= 1'b0;
         end
         else if (calc_idx >= 4'd1 && calc_idx <= 4'd10) begin
             key_mem[calc_idx] <= {w0_next, w1_next, w2_next, w3_next};
+            prev_key <= {w0_next, w1_next, w2_next, w3_next};
             calc_idx <= calc_idx + 1;
             if (calc_idx == 4'd10)
                 ready <= 1'b1;
