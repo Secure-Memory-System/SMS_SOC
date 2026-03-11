@@ -198,14 +198,21 @@ module tft_lcd_axi_wrapper #(
             rvalid_reg <= 0;
             rdata_reg  <= 0;
         end else begin
-            rvalid_reg <= s_axi_arvalid;
-            case (s_axi_araddr[4:2])
-                3'h0: rdata_reg <= slv_reg0;
-                3'h1: rdata_reg <= slv_reg1;
-                3'h2: rdata_reg <= slv_reg2;
-                3'h3: rdata_reg <= slv_reg3;
-                default: rdata_reg <= 0;
-            endcase
+            // ARVALID와 ARREADY가 만나면 읽기 응답(RVALID) 시작
+            if (s_axi_arvalid && arready_reg) begin
+                rvalid_reg <= 1;
+                case (s_axi_araddr[4:2])
+                    3'h0: rdata_reg <= slv_reg0;
+                    3'h1: rdata_reg <= slv_reg1;
+                    3'h2: rdata_reg <= slv_reg2;
+                    3'h3: rdata_reg <= slv_reg3;
+                    default: rdata_reg <= 0;
+                endcase
+            end 
+            // 마스터가 데이터를 받아가면(RREADY) RVALID 내림
+            else if (s_axi_rvalid && s_axi_rready) begin
+                rvalid_reg <= 0;
+            end
         end
     end
 

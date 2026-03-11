@@ -153,13 +153,19 @@ module tft_lcd_write_master #(
                         end
 
                         PACK_READ: begin
-                            // 매 클럭 1바이트 읽어서 32bit에 쌓기
-                            packed_data <= {i_bram_rd_data, packed_data[31:8]};
-                            pack_cnt    <= pack_cnt + 1;
+                            // 주소는 pack_cnt보다 1클럭 먼저 진행
                             if (pack_cnt < 3) begin
                                 o_bram_rd_addr <= byte_ptr + pack_cnt + 1;
-                            end else begin
-                                // 4바이트 완성
+                            end
+                            
+                            // 데이터는 1클럭 지연되어 들어오므로 그대로 패킹
+                            // (주의: 첫 클럭(pack_cnt==0)에는 쓰레기값이 들어가지만, 
+                            //  이후 1~4번째 클럭에서 정상 데이터 4바이트가 덮어씌워짐)
+                            packed_data <= {i_bram_rd_data, packed_data[31:8]};
+                            pack_cnt    <= pack_cnt + 1;
+                            
+                            // 총 4번의 유효 데이터를 받았을 때 (pack_cnt가 4가 된 순간)
+                            if (pack_cnt == 4) begin
                                 data_ready <= 1;
                                 pack_state <= PACK_READY;
                             end

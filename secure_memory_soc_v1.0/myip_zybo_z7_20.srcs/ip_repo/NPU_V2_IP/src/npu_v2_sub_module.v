@@ -90,12 +90,12 @@ module npu_conv2d_calc(
     reg signed [7:0] bias [0:4];
 
     initial begin
-        $readmemh("55_conv2d_weights_filter_0.txt", weight_0);
-        $readmemh("55_conv2d_weights_filter_1.txt", weight_1);
-        $readmemh("55_conv2d_weights_filter_2.txt", weight_2);
-        $readmemh("55_conv2d_weights_filter_3.txt", weight_3);
-        $readmemh("55_conv2d_weights_filter_4.txt", weight_4);
-        $readmemh("55_conv2d_bias.txt", bias);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_0.txt", weight_0);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_1.txt", weight_1);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_2.txt", weight_2);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_3.txt", weight_3);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_4.txt", weight_4);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_bias.txt", bias);
     end
 
     // k: 0~8 = 누적 중, 9 = 누적 완료 대기(출력 클럭)
@@ -261,8 +261,8 @@ module npu_dense_integrated(
     (* ram_style = "distributed" *) reg signed [7:0] b_rom [0:4];
 
     initial begin
-        $readmemh("55_dense_weights.txt", w_rom);
-        $readmemh("55_dense_bias.txt",    b_rom);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_weights.txt", w_rom);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_bias.txt",    b_rom);
     end
 
     reg [7:0]  wr_addr;
@@ -443,8 +443,8 @@ module npu_output_layer(
     reg signed [7:0] b1_rom [0:9];
 
     initial begin
-        $readmemh("55_dense_1_weights.txt", w1_rom);
-        $readmemh("55_dense_1_bias.txt",    b1_rom);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_1_weights.txt", w1_rom);
+        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_1_bias.txt",    b1_rom);
     end
 
     reg [3:0] n_ptr;
