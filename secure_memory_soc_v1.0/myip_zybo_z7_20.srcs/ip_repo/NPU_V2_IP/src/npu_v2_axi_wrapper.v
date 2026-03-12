@@ -1,25 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Module Name : npu_v2_axi_wrapper
-// Description : AXI4-Lite Slave(CPU제어) + AXI4 Master(BRAM읽기) +
-//               AXI4-Stream Master(결과출력) wrapper for npu_v2_top
-//
-// ── m_axi_img Write 채널 더미 포트 추가 이력 ─────────────────────────────
-//   Vivado Block Design에서 BRAM Controller Port B 연결 시
-//   "no matching connection" 오류 발생 원인:
-//     m_axi_img에 AR+R 채널만 존재 → AXI Master 인터페이스 불완전
-//     BRAM Controller는 AW+W+B+AR+R 5채널 전부 요구
-//
-//   해결: Write 채널(AW+W+B) 더미 포트 추가
-//     - output 포트: 0으로 tie-off (쓰기 요청 절대 발생 안 함)
-//     - input  포트: 연결만 하고 내부에서 사용 안 함
-//
-// ── AXI-Lite Register Map ─────────────────────────────────────────────────
-//   0x00 Write: [0]=start (self-clear 1-pulse)
-//        Read : [1]=done_latch, [0]=busy
-//   0x04 Write: BRAM 픽셀 데이터 오프셋 주소 (기본 0)
-//   0x08 Read : [3:0]=final_digit
-//////////////////////////////////////////////////////////////////////////////////
 
 module npu_v2_axi_wrapper #(
     parameter BRAM_ADDR_BASE = 32'h0000_0000
@@ -101,52 +80,77 @@ module npu_v2_axi_wrapper #(
     // =========================================================
     reg [31:0] slv_reg0;   // [0]=start(self-clear)
     reg [31:0] slv_reg1;   // BRAM 오프셋 주소
+    
+    reg bvalid_reg;
+    // 기존 코드 제거하고 아래로 교체
+    reg aw_latched, w_latched;
+    reg [4:0] aw_addr_lat;
+    reg [31:0] w_data_lat;
 
-    reg awready_reg, wready_reg, bvalid_reg;
-    assign s_axi_awready = awready_reg;
-    assign s_axi_wready  = wready_reg;
+    assign s_axi_awready = !aw_latched && !bvalid_reg;
+    assign s_axi_wready  = !w_latched  && !bvalid_reg;
     assign s_axi_bvalid  = bvalid_reg;
     assign s_axi_bresp   = 2'b00;
-
-    always @(posedge aclk) begin
-        if (!aresetn) begin
-            awready_reg <= 0; wready_reg <= 0; bvalid_reg <= 0;
-        end else begin
-            awready_reg <= (s_axi_awvalid && !awready_reg) ? 1'b1 : 1'b0;
-            wready_reg  <= (s_axi_wvalid  && !wready_reg)  ? 1'b1 : 1'b0;
-            if      (awready_reg && wready_reg)  bvalid_reg <= 1'b1;
-            else if (s_axi_bready && bvalid_reg) bvalid_reg <= 1'b0;
-        end
-    end
-
-    wire [2:0] wr_reg_addr = s_axi_awaddr[4:2];
+    
+    wire write_en = aw_latched && w_latched;
     wire        result_valid_w;
     wire [3:0]  final_digit_w;
     wire        npu_busy;
-    reg         done_latch;
-    reg  [3:0]  final_digit_reg;
 
     always @(posedge aclk) begin
         if (!aresetn) begin
-            slv_reg0 <= 0; slv_reg1 <= 0;
+            aw_latched <= 0; w_latched  <= 0;
+            aw_addr_lat <= 0; w_data_lat <= 0;
+            bvalid_reg <= 0;
+        end else begin
+            if (s_axi_awvalid && s_axi_awready) begin
+                aw_latched  <= 1;
+                aw_addr_lat <= s_axi_awaddr;
+            end
+            if (s_axi_wvalid && s_axi_wready) begin
+                w_latched  <= 1;
+                w_data_lat <= s_axi_wdata;
+            end
+            if (write_en) begin
+                bvalid_reg <= 1;
+                aw_latched <= 0;
+                w_latched  <= 0;
+            end else if (s_axi_bready && bvalid_reg) begin
+                bvalid_reg <= 0;
+            end
+        end
+    end
+
+    wire [2:0] wr_reg_addr = aw_addr_lat[4:2];  // s_axi_awaddr → aw_addr_lat
+    reg done_latch; 
+    reg [3:0] final_digit_reg;
+    
+    // [수정] done_latch 및 제어 레지스터 Race Condition 해결
+    always @(posedge aclk) begin
+        if (!aresetn) begin
+            slv_reg0 <= 0;
+            slv_reg1 <= 0;
             done_latch <= 0; final_digit_reg <= 0;
         end else begin
-            if (awready_reg && wready_reg) begin
-                case (wr_reg_addr)
-                    3'h0: slv_reg0 <= s_axi_wdata;
-                    3'h1: slv_reg1 <= s_axi_wdata;
-                    default: ;
-                endcase
-            end else if (slv_reg0[0]) begin
-                slv_reg0[0] <= 1'b0;   // start self-clear
-            end
-
+            // 1순위: 연산이 완료되면 플래그와 결과값을 래치
             if (result_valid_w) begin
                 done_latch      <= 1'b1;
                 final_digit_reg <= final_digit_w;
+            end 
+            // 2순위: CPU가 제어 레지스터에 쓰기를 시도할 때
+            else if (write_en) begin  
+                case (wr_reg_addr)
+                    3'h0: slv_reg0 <= w_data_lat;
+                    3'h1: slv_reg1 <= w_data_lat;
+                    default: ;
+                endcase
+                // CPU가 레지스터 0번(제어)에 Write 할 때만 완료 플래그를 명시적으로 해제
+                if (wr_reg_addr == 3'h0) done_latch <= 1'b0;
+            end 
+            // 3순위: start(slv_reg0[0]) 비트는 1클럭 유지 후 자동 Clear
+            else if (slv_reg0[0]) begin
+                slv_reg0[0] <= 1'b0;
             end
-            if (awready_reg && wready_reg && wr_reg_addr == 3'h0)
-                done_latch <= 1'b0;
         end
     end
 
@@ -193,9 +197,21 @@ module npu_v2_axi_wrapper #(
     wire [9:0] buf_idx_w;
 
     // ── BRAM AR 채널 ─────────────────────────────────────
+    reg ar_pending;  // AR 발행 후 rvalid 대기 중 플래그
+    
+    always @(posedge aclk) begin
+        if (!aresetn)
+            ar_pending <= 1'b0;
+        else if (m_axi_img_arvalid && m_axi_img_arready)
+            ar_pending <= 1'b1;   // 주소 수락됨 → 대기
+        else if (m_axi_img_rvalid)
+            ar_pending <= 1'b0;   // 데이터 수신 → 다음 요청 가능
+    end
+    
+    // arvalid: PF_STREAM 중이고 pending 아닐 때만 assert
+    assign m_axi_img_arvalid = (pf_state == PF_STREAM) && !ar_pending;
     assign m_axi_img_araddr  = BRAM_ADDR_BASE + slv_reg1
                                + {20'd0, buf_idx_w, 2'b00};
-    assign m_axi_img_arvalid = (pf_state == PF_STREAM);
     assign m_axi_img_rready  = 1'b1;
 
     // ── pixel 래치 ───────────────────────────────────────
