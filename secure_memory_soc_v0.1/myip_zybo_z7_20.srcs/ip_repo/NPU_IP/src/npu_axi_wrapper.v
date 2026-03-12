@@ -46,14 +46,12 @@ module npu_axi_wrapper (
     // --------------------------------------------------
     // [Part 1] AXI-Lite 레지스터 맵 (간소화)
     // --------------------------------------------------
-    reg [31:0] slv_reg0; // 제어 레지스터 (Bit 0: start, Bit 1: pad_en)
-    reg [31:0] slv_reg1; // 해상도 (상위 16비트: Height, 하위 16비트: Width)
-    reg [31:0] slv_reg2; // Weight 0~3
-    reg [31:0] slv_reg3; // Weight 4~7
-    reg [31:0] slv_reg4; // Bias(16bit) & Weight 8(8bit)
+    reg [31:0] slv_reg0; // 제어 (start, pad_en)
+    reg [31:0] slv_reg1; // 해상도 (Height, Width)
 
     // AXI-Lite Write 상태 머신
     reg awready_reg, wready_reg, bvalid_reg;
+    
     assign s_axi_awready = awready_reg;
     assign s_axi_wready  = wready_reg;
     assign s_axi_bvalid  = bvalid_reg;
@@ -78,14 +76,11 @@ module npu_axi_wrapper (
     wire [2:0] reg_addr = s_axi_awaddr[4:2]; 
     always @(posedge aclk) begin
         if (!aresetn) begin
-            slv_reg0 <= 0; slv_reg1 <= 0; slv_reg2 <= 0; slv_reg3 <= 0; slv_reg4 <= 0;
+            slv_reg0 <= 0; slv_reg1 <= 0;
         end else if (awready_reg && wready_reg) begin
             case (reg_addr)
                 3'h0: slv_reg0 <= s_axi_wdata;
                 3'h1: slv_reg1 <= s_axi_wdata;
-                3'h2: slv_reg2 <= s_axi_wdata;
-                3'h3: slv_reg3 <= s_axi_wdata;
-                3'h4: slv_reg4 <= s_axi_wdata;
             endcase
         end else begin
             // 하드웨어 트리거: CPU가 start(0번 비트)에 1을 쓰면 1클럭 후 자동으로 0으로 복귀
@@ -114,21 +109,7 @@ module npu_axi_wrapper (
         .start       (slv_reg0[0]),
         .reg_pad_en  (slv_reg0[1]),
         .reg_img_w   (slv_reg1[15:0]),
-        .reg_img_h   (slv_reg1[31:16]),
-        
-        // 8비트 가중치들을 32비트 레지스터에서 쪼개서 넣음
-        .weight_in_0 (slv_reg2[7:0]),
-        .weight_in_1 (slv_reg2[15:8]),
-        .weight_in_2 (slv_reg2[23:16]),
-        .weight_in_3 (slv_reg2[31:24]),
-
-        .weight_in_4 (slv_reg3[7:0]),
-        .weight_in_5 (slv_reg3[15:8]),
-        .weight_in_6 (slv_reg3[23:16]),
-        .weight_in_7 (slv_reg3[31:24]),
-
-        .weight_in_8 (slv_reg4[7:0]),
-        .bias_in     (slv_reg4[23:8]), 
+        .reg_img_h   (slv_reg1[31:16]), 
 
         // AXI-Stream 입력 연결 (하위 8비트만 사용)
         .pixel_in    (s_axis_tdata[7:0]),

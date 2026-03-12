@@ -69,8 +69,8 @@ parameter MAX_WIDTH = 1920 // 최대 허용 가로 크기
 
             // [중요] 메모리 읽기와 윈도우 업데이트 타이밍
             // 메모리에서 읽은 값은 다음 클럭에 raw_win에 반영됨
-            raw_win_02 <= line_buf_0[ptr];
-            raw_win_12 <= line_buf_1[ptr];
+            raw_win_02 <= line_buf_1[ptr];
+            raw_win_12 <= line_buf_0[ptr];
             raw_win_22 <= pixel_in;
 
             // 기존 데이터 Shift
@@ -79,8 +79,8 @@ parameter MAX_WIDTH = 1920 // 최대 허용 가로 크기
             raw_win_21 <= raw_win_22; raw_win_20 <= raw_win_21;
 
             // 메모리 업데이트: 읽은 후 현재 위치에 새 데이터 쓰기
-            line_buf_0[ptr] <= line_buf_1[ptr];
-            line_buf_1[ptr] <= pixel_in;
+            line_buf_0[ptr] <= pixel_in;
+            line_buf_1[ptr] <= line_buf_0[ptr];
 
             // 유효 신호 생성 (3x3이 완전히 채워지는 타이밍 계산)
             if (row_cnt >= 2 && ptr >= 2) valid_out <= 1;

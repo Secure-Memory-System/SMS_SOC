@@ -17,7 +17,7 @@ module npu_controller (
     output reg [15:0] x_cnt,  
     output reg [15:0] y_cnt,  
     output reg pad_ctrl,      
-    output wire done_tick     // reg에서 wire로 변경하여 타이밍 직관성 확보
+    output wire done_tick
 );
 
     // 상태 머신 정의
