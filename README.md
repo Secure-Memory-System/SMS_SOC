@@ -1,4 +1,4 @@
-# 🔐 Secure Memory System (SMS) SoC
+# 🔐 Secure Memory System (SMS) SoC ljs test
 
 > AES-128 암호화 기반 보안 메모리 시스템 — Zynq-7000 SoC 구현
 
