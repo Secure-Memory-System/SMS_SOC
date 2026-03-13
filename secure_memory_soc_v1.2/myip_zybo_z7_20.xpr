@@ -76,13 +76,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="72"/>
-    <Option Name="WTModelSimExportSim" Val="72"/>
-    <Option Name="WTQuestaExportSim" Val="72"/>
+    <Option Name="WTXSimExportSim" Val="75"/>
+    <Option Name="WTModelSimExportSim" Val="75"/>
+    <Option Name="WTQuestaExportSim" Val="75"/>
     <Option Name="WTIesExportSim" Val="0"/>
     <Option Name="WTVcsExportSim" Val="0"/>
-    <Option Name="WTRivieraExportSim" Val="72"/>
-    <Option Name="WTActivehdlExportSim" Val="72"/>
+    <Option Name="WTRivieraExportSim" Val="75"/>
+    <Option Name="WTActivehdlExportSim" Val="75"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -132,9 +132,6 @@
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="soc_design.bd" FileRelPathName="ip/soc_design_processing_system7_0_1/soc_design_processing_system7_0_1.xci">
           <Proxy FileSetName="soc_design_processing_system7_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="soc_design.bd" FileRelPathName="ip/soc_design_system_ila_0_0/soc_design_system_ila_0_0.xci">
-          <Proxy FileSetName="soc_design_system_ila_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="soc_design.bd" FileRelPathName="ip/soc_design_tft_lcd_axi_wrapper_0_0/soc_design_tft_lcd_axi_wrapper_0_0.xci">
           <Proxy FileSetName="soc_design_tft_lcd_axi_wrapper_0_0"/>
@@ -743,12 +740,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="soc_design_system_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/soc_design_system_ila_0_0" RelGenDir="$PGENDIR/soc_design_system_ila_0_0">
-      <Config>
-        <Option Name="TopModule" Val="soc_design_system_ila_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="soc_design_npu_v2_axi_wrapper_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/soc_design_npu_v2_axi_wrapper_0_3" RelGenDir="$PGENDIR/soc_design_npu_v2_axi_wrapper_0_3">
       <Config>
         <Option Name="TopModule" Val="soc_design_npu_v2_axi_wrapper_0_3"/>
@@ -888,18 +879,6 @@
     <Run Id="soc_design_tft_lcd_axi_wrapper_0_0_synth_1" Type="Ft3:Synth" SrcSet="soc_design_tft_lcd_axi_wrapper_0_0" Part="xc7z020clg400-1" ConstrsSet="soc_design_tft_lcd_axi_wrapper_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="soc_design_system_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="soc_design_system_ila_0_0" Part="xc7z020clg400-1" ConstrsSet="soc_design_system_ila_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_system_ila_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_system_ila_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_system_ila_0_0_synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -1110,25 +1089,6 @@
     <Run Id="soc_design_tft_lcd_axi_wrapper_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_tft_lcd_axi_wrapper_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_tft_lcd_axi_wrapper_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="soc_design_system_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_system_ila_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_system_ila_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_system_ila_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_system_ila_0_0_impl_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

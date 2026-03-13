@@ -192,6 +192,10 @@ module npu_v2_axi_wrapper #(
     reg [1:0]  pf_state;
     reg        busy_r;
     reg [7:0]  pixel_r;
+    reg [31:0] word_buf;    // 수신한 32bit 워드 저장
+    reg [1:0]  byte_sel;    // 언팩 중인 바이트 위치 (0~3)
+    reg        word_valid;  // 언팩 진행 중 플래그
+    reg        pixel_en_r;  // NPU에 전달할 pixel_en
     assign npu_busy = busy_r;
 
     wire [9:0] buf_idx_w;
@@ -209,17 +213,47 @@ module npu_v2_axi_wrapper #(
     end
     
     // arvalid: PF_STREAM 중이고 pending 아닐 때만 assert
-    assign m_axi_img_arvalid = (pf_state == PF_STREAM) && !ar_pending;
-    assign m_axi_img_araddr  = BRAM_ADDR_BASE + slv_reg1
-                               + {20'd0, buf_idx_w, 2'b00};
+    assign m_axi_img_arvalid = (pf_state == PF_STREAM) && !ar_pending && !word_valid;
+    assign m_axi_img_araddr = BRAM_ADDR_BASE + slv_reg1
+                         + {22'd0, buf_idx_w[9:2], 2'b00};  // 4픽셀당 1 워드
     assign m_axi_img_rready  = 1'b1;
 
     // ── pixel 래치 ───────────────────────────────────────
     always @(posedge aclk) begin
-        if (!aresetn)
-            pixel_r <= 8'd0;
-        else if (m_axi_img_rvalid && pf_state == PF_STREAM)
-            pixel_r <= m_axi_img_rdata[7:0];
+        if (!aresetn) begin
+            word_buf   <= 0;
+            byte_sel   <= 0;
+            word_valid <= 0;
+            pixel_en_r <= 0;
+            pixel_r    <= 0;
+        end else begin
+            pixel_en_r <= 0; // 매 클럭 기본값 0
+    
+            if (m_axi_img_rvalid && pf_state == PF_STREAM && !word_valid) begin
+                // 새 워드 수신 → byte[0] 즉시 출력
+                word_buf   <= m_axi_img_rdata;
+                pixel_r    <= m_axi_img_rdata[7:0];
+                pixel_en_r <= 1;
+                byte_sel   <= 2'd1;
+                word_valid <= 1;
+            end else if (word_valid) begin
+                // byte[1], [2], [3] 순차 출력
+                pixel_en_r <= 1;
+                case (byte_sel)
+                    2'd1: pixel_r <= word_buf[15:8];
+                    2'd2: pixel_r <= word_buf[23:16];
+                    2'd3: pixel_r <= word_buf[31:24];
+                    default: ;
+                endcase
+    
+                if (byte_sel == 2'd3) begin
+                    word_valid <= 0;
+                    byte_sel   <= 0;
+                end else begin
+                    byte_sel <= byte_sel + 1;
+                end
+            end
+        end
     end
 
     // ── Pixel Feeder FSM ─────────────────────────────────
@@ -256,7 +290,7 @@ module npu_v2_axi_wrapper #(
         .reset_p     (~aresetn),
         .start       (slv_reg0[0]),
         .pixel       (pixel_r),
-        .pixel_en    (m_axi_img_rvalid),
+        .pixel_en    (pixel_en_r),     // ← m_axi_img_rvalid 에서 pixel_en_r 로 변경
         .buf_idx     (buf_idx_w),
         .final_digit (final_digit_w),
         .result_valid(result_valid_w)
