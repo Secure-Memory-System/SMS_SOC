@@ -1,0 +1,79 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 12:37:34 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_tft_lcd_axi_wrapper_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_tft_lcd_axi_wrapper_0_0 (xilinx.com:user:tft_lcd_axi_wrapper:1.1) from (Rev. 1) to (Rev. 2)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 10:12:27 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_tft_lcd_axi_wrapper_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_tft_lcd_axi_wrapper_0_0 from xilinx.com:user:tft_lcd_axi_wrapper:1.0 (Rev. 4) to xilinx.com:user:tft_lcd_axi_wrapper:1.1 (Rev. 1)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 09:22:46 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_tft_lcd_axi_wrapper_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_tft_lcd_axi_wrapper_0_0 (xilinx.com:user:tft_lcd_axi_wrapper:1.0) from (Rev. 2) to (Rev. 4)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 09:22:46 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_npu_v2_axi_wrapper_0_2'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_npu_v2_axi_wrapper_0_2 (xilinx.com:user:npu_v2_axi_wrapper:1.0) from (Rev. 3) to (Rev. 5)
+
