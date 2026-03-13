@@ -52,8 +52,8 @@
       "blk_mem_gen_0": "",
       "axi_bram_ctrl_0": "",
       "top_dma_full_to_stre_0": "",
-      "npu_v2_axi_wrapper_0": "",
-      "system_ila_0": ""
+      "system_ila_0": "",
+      "npu_v2_axi_wrapper_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -3156,38 +3156,6 @@
           }
         }
       },
-      "npu_v2_axi_wrapper_0": {
-        "vlnv": "xilinx.com:user:npu_v2_axi_wrapper:1.0",
-        "ip_revision": "10",
-        "xci_name": "soc_design_npu_v2_axi_wrapper_0_2",
-        "xci_path": "ip\\soc_design_npu_v2_axi_wrapper_0_2\\soc_design_npu_v2_axi_wrapper_0_2.xci",
-        "inst_hier_path": "npu_v2_axi_wrapper_0",
-        "interface_ports": {
-          "m_axi_img": {
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "mode": "Master",
-            "address_space_ref": "m_axi_img",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
-            }
-          },
-          "s_axi": {
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "mode": "Slave",
-            "memory_map_ref": "s_axi"
-          }
-        },
-        "addressing": {
-          "address_spaces": {
-            "m_axi_img": {
-              "range": "4G",
-              "width": "32"
-            }
-          }
-        }
-      },
       "system_ila_0": {
         "vlnv": "xilinx.com:ip:system_ila:1.1",
         "ip_revision": "19",
@@ -3286,6 +3254,38 @@
             "monitor_type": "SlaveType",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+          }
+        }
+      },
+      "npu_v2_axi_wrapper_0": {
+        "vlnv": "xilinx.com:user:npu_v2_axi_wrapper:1.0",
+        "ip_revision": "2",
+        "xci_name": "soc_design_npu_v2_axi_wrapper_0_3",
+        "xci_path": "ip\\soc_design_npu_v2_axi_wrapper_0_3\\soc_design_npu_v2_axi_wrapper_0_3.xci",
+        "inst_hier_path": "npu_v2_axi_wrapper_0",
+        "interface_ports": {
+          "m_axi_img": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Master",
+            "address_space_ref": "m_axi_img",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0xFFFFFFFF",
+              "width": "32"
+            }
+          },
+          "s_axi": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Slave",
+            "memory_map_ref": "s_axi"
+          }
+        },
+        "addressing": {
+          "address_spaces": {
+            "m_axi_img": {
+              "range": "4G",
+              "width": "32"
+            }
           }
         }
       }
@@ -3749,12 +3749,14 @@
               "SEG_aes_dec_axi_wrapper_0_reg0": {
                 "address_block": "/aes_dec_axi_wrapper_0/s_axi/reg0",
                 "offset": "0x40000000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               },
               "SEG_aes_enc_axi_wrapper_0_reg0": {
                 "address_block": "/aes_enc_axi_wrapper_0/s_axi/reg0",
                 "offset": "0x40001000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               },
               "SEG_axi_bram_ctrl_0_Mem0": {
                 "address_block": "/axi_bram_ctrl_0/S_AXI/Mem0",
@@ -3764,22 +3766,26 @@
               "SEG_npu_v2_axi_wrapper_0_reg0": {
                 "address_block": "/npu_v2_axi_wrapper_0/s_axi/reg0",
                 "offset": "0x40002000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               },
               "SEG_tft_lcd_axi_wrapper_0_reg0": {
                 "address_block": "/tft_lcd_axi_wrapper_0/s_axi/reg0",
                 "offset": "0x40003000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               },
               "SEG_top_dma_full_to_stre_0_reg0": {
                 "address_block": "/top_dma_full_to_stre_0/s_axi/reg0",
                 "offset": "0x40004000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               },
               "SEG_top_dma_stream_to_fu_0_reg0": {
                 "address_block": "/top_dma_stream_to_fu_0/s_axi/reg0",
                 "offset": "0x40005000",
-                "range": "4K"
+                "range": "4K",
+                "is_excluded": "TRUE"
               }
             }
           }
