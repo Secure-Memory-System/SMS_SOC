@@ -292,7 +292,7 @@
                 "SX": "/tft_lcd_axi_wrapper_0",
                 "SI": "s_axi",
                 "SS": "reg0",
-                "SV": "xilinx.com:user:tft_lcd_axi_wrapper:1.1",
+                "SV": "xilinx.com:user:tft_lcd_axi_wrapper:1.2",
                 "TM": "both",
                 "TU": "register"
             },
@@ -360,7 +360,7 @@
                 "MX": "/tft_lcd_axi_wrapper_0",
                 "MI": "m_axi",
                 "MS": "SEG_axi_bram_ctrl_0_Mem0",
-                "MV": "xilinx.com:user:tft_lcd_axi_wrapper:1.1",
+                "MV": "xilinx.com:user:tft_lcd_axi_wrapper:1.2",
                 "SX": "/axi_bram_ctrl_0",
                 "SI": "S_AXI",
                 "SS": "Mem0",

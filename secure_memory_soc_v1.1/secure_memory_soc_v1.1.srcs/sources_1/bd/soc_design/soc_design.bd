@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xDB85082955C34171",
+      "boundary_crc": "0x72C71A8B72841851",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../secure_memory_soc_v1.1.gen/sources_1/bd/soc_design",
       "name": "soc_design",
@@ -212,6 +212,31 @@
           "PS_PORB": {
             "physical_name": "FIXED_IO_ps_porb",
             "direction": "IO"
+          }
+        }
+      },
+      "btn0": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
+        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
+        "port_maps": {
+          "TRI_I": {
+            "physical_name": "btn0_tri_i",
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "TRI_O": {
+            "physical_name": "btn0_tri_o",
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "TRI_T": {
+            "physical_name": "btn0_tri_t",
+            "direction": "O",
+            "left": "0",
+            "right": "0"
           }
         }
       }
@@ -540,7 +565,7 @@
             "value": "0"
           },
           "PCW_EN_EMIO_GPIO": {
-            "value": "0"
+            "value": "1"
           },
           "PCW_EN_EMIO_I2C0": {
             "value": "0"
@@ -732,7 +757,13 @@
             "value": "0xE000A000"
           },
           "PCW_GPIO_EMIO_GPIO_ENABLE": {
-            "value": "0"
+            "value": "1"
+          },
+          "PCW_GPIO_EMIO_GPIO_IO": {
+            "value": "1"
+          },
+          "PCW_GPIO_EMIO_GPIO_WIDTH": {
+            "value": "1"
           },
           "PCW_GPIO_HIGHADDR": {
             "value": "0xE000AFFF"
@@ -3184,8 +3215,8 @@
         }
       },
       "tft_lcd_axi_wrapper_0": {
-        "vlnv": "xilinx.com:user:tft_lcd_axi_wrapper:1.1",
-        "ip_revision": "2",
+        "vlnv": "xilinx.com:user:tft_lcd_axi_wrapper:1.2",
+        "ip_revision": "1",
         "xci_name": "soc_design_tft_lcd_axi_wrapper_0_0",
         "xci_path": "ip/soc_design_tft_lcd_axi_wrapper_0_0/soc_design_tft_lcd_axi_wrapper_0_0.xci",
         "inst_hier_path": "tft_lcd_axi_wrapper_0",
@@ -3464,6 +3495,12 @@
           "processing_system7_0/FIXED_IO"
         ]
       },
+      "processing_system7_0_GPIO_0": {
+        "interface_ports": [
+          "btn0",
+          "processing_system7_0/GPIO_0"
+        ]
+      },
       "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
           "processing_system7_0/M_AXI_GP0",
@@ -3581,11 +3618,11 @@
           "axi_bram_ctrl_0/s_axi_aresetn",
           "top_dma_full_to_stre_0/aresetn",
           "aes_enc_axi_wrapper_0/aresetn",
-          "tft_lcd_axi_wrapper_0/aresetn",
           "axi_interconnect_0/M06_ARESETN",
           "npu_axi_wrapper_0/aresetn",
           "top_dma_full_to_stre_1/aresetn",
-          "axi_bram_ctrl_1/s_axi_aresetn"
+          "axi_bram_ctrl_1/s_axi_aresetn",
+          "tft_lcd_axi_wrapper_0/aresetn"
         ]
       },
       "processing_system7_0_FCLK_CLK0": {
@@ -3612,11 +3649,11 @@
           "axi_bram_ctrl_0/s_axi_aclk",
           "top_dma_full_to_stre_0/aclk",
           "aes_enc_axi_wrapper_0/aclk",
-          "tft_lcd_axi_wrapper_0/aclk",
           "axi_interconnect_0/M06_ACLK",
           "npu_axi_wrapper_0/aclk",
           "top_dma_full_to_stre_1/aclk",
-          "axi_bram_ctrl_1/s_axi_aclk"
+          "axi_bram_ctrl_1/s_axi_aclk",
+          "tft_lcd_axi_wrapper_0/aclk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
