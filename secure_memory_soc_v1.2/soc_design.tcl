@@ -143,6 +143,7 @@ xilinx.com:user:tft_lcd_axi_wrapper:1.0\
 xilinx.com:ip:blk_mem_gen:8.4\
 xilinx.com:ip:axi_bram_ctrl:4.1\
 xilinx.com:user:top_dma_full_to_stream:1.0\
+xilinx.com:ip:system_ila:1.1\
 xilinx.com:user:npu_v2_axi_wrapper:1.0\
 "
 
@@ -644,11 +645,45 @@ proc create_root_design { parentCell } {
   # Create instance: top_dma_full_to_stre_0, and set properties
   set top_dma_full_to_stre_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:top_dma_full_to_stream:1.0 top_dma_full_to_stre_0 ]
 
+  # Create instance: system_ila_0, and set properties
+  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
+  set_property -dict [list \
+    CONFIG.C_MON_TYPE {INTERFACE} \
+    CONFIG.C_NUM_MONITOR_SLOTS {2} \
+    CONFIG.C_SLOT_0_APC_EN {0} \
+    CONFIG.C_SLOT_0_AXI_AR_SEL_DATA {0} \
+    CONFIG.C_SLOT_0_AXI_AR_SEL_TRIG {0} \
+    CONFIG.C_SLOT_0_AXI_AW_SEL_DATA {1} \
+    CONFIG.C_SLOT_0_AXI_AW_SEL_TRIG {1} \
+    CONFIG.C_SLOT_0_AXI_B_SEL_DATA {1} \
+    CONFIG.C_SLOT_0_AXI_B_SEL_TRIG {1} \
+    CONFIG.C_SLOT_0_AXI_R_SEL_DATA {0} \
+    CONFIG.C_SLOT_0_AXI_R_SEL_TRIG {0} \
+    CONFIG.C_SLOT_0_AXI_W_SEL_DATA {1} \
+    CONFIG.C_SLOT_0_AXI_W_SEL_TRIG {1} \
+    CONFIG.C_SLOT_0_INTF_TYPE {xilinx.com:interface:aximm_rtl:1.0} \
+    CONFIG.C_SLOT_1_APC_EN {0} \
+    CONFIG.C_SLOT_1_AXI_AR_SEL_DATA {1} \
+    CONFIG.C_SLOT_1_AXI_AR_SEL_TRIG {1} \
+    CONFIG.C_SLOT_1_AXI_AW_SEL_DATA {1} \
+    CONFIG.C_SLOT_1_AXI_AW_SEL_TRIG {1} \
+    CONFIG.C_SLOT_1_AXI_B_SEL_DATA {1} \
+    CONFIG.C_SLOT_1_AXI_B_SEL_TRIG {1} \
+    CONFIG.C_SLOT_1_AXI_R_SEL_DATA {1} \
+    CONFIG.C_SLOT_1_AXI_R_SEL_TRIG {1} \
+    CONFIG.C_SLOT_1_AXI_W_SEL_DATA {1} \
+    CONFIG.C_SLOT_1_AXI_W_SEL_TRIG {1} \
+    CONFIG.C_SLOT_1_INTF_TYPE {xilinx.com:interface:aximm_rtl:1.0} \
+  ] $system_ila_0
+
+
   # Create instance: npu_v2_axi_wrapper_0, and set properties
   set npu_v2_axi_wrapper_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:npu_v2_axi_wrapper:1.0 npu_v2_axi_wrapper_0 ]
 
   # Create interface connections
   connect_bd_intf_net -intf_net S01_AXI_1 [get_bd_intf_pins axi_interconnect_0/S01_AXI] [get_bd_intf_pins tft_lcd_axi_wrapper_0/m_axi]
+connect_bd_intf_net -intf_net [get_bd_intf_nets S01_AXI_1] [get_bd_intf_pins axi_interconnect_0/S01_AXI] [get_bd_intf_pins system_ila_0/SLOT_0_AXI]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets S01_AXI_1]
   connect_bd_intf_net -intf_net aes_enc_axi_wrapper_0_m_axis [get_bd_intf_pins aes_enc_axi_wrapper_0/m_axis] [get_bd_intf_pins top_dma_stream_to_fu_0/s_axis]
   connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTA]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins tft_lcd_axi_wrapper_0/s_axi]
@@ -659,6 +694,8 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_interconnect_0_M05_AXI [get_bd_intf_pins axi_interconnect_0/M05_AXI] [get_bd_intf_pins aes_dec_axi_wrapper_0/s_axi]
   connect_bd_intf_net -intf_net axi_interconnect_0_M06_AXI [get_bd_intf_pins axi_interconnect_0/M06_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
   connect_bd_intf_net -intf_net npu_v2_axi_wrapper_0_m_axi_img [get_bd_intf_pins npu_v2_axi_wrapper_0/m_axi_img] [get_bd_intf_pins axi_interconnect_0/S02_AXI]
+connect_bd_intf_net -intf_net [get_bd_intf_nets npu_v2_axi_wrapper_0_m_axi_img] [get_bd_intf_pins npu_v2_axi_wrapper_0/m_axi_img] [get_bd_intf_pins system_ila_0/SLOT_1_AXI]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets npu_v2_axi_wrapper_0_m_axi_img]
   connect_bd_intf_net -intf_net npu_v2_axi_wrapper_0_m_axis [get_bd_intf_pins npu_v2_axi_wrapper_0/m_axis] [get_bd_intf_pins aes_enc_axi_wrapper_0/s_axis]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
@@ -696,17 +733,18 @@ proc create_root_design { parentCell } {
   [get_bd_pins axi_interconnect_0/ARESETN] \
   [get_bd_pins smartconnect_0/aresetn] \
   [get_bd_pins smartconnect_1/aresetn] \
-  [get_bd_pins top_dma_stream_to_fu_0/aresetn] \
   [get_bd_pins aes_dec_axi_wrapper_0/aresetn] \
   [get_bd_pins fnd_axi_stream_wrapp_0/aresetn] \
   [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] \
-  [get_bd_pins top_dma_full_to_stre_0/aresetn] \
   [get_bd_pins aes_enc_axi_wrapper_0/aresetn] \
-  [get_bd_pins npu_v2_axi_wrapper_0/aresetn] \
   [get_bd_pins axi_interconnect_0/M06_ARESETN] \
   [get_bd_pins axi_interconnect_0/S02_ARESETN] \
   [get_bd_pins axi_interconnect_0/S01_ARESETN] \
-  [get_bd_pins tft_lcd_axi_wrapper_0/aresetn]
+  [get_bd_pins top_dma_stream_to_fu_0/aresetn] \
+  [get_bd_pins top_dma_full_to_stre_0/aresetn] \
+  [get_bd_pins system_ila_0/resetn] \
+  [get_bd_pins tft_lcd_axi_wrapper_0/aresetn] \
+  [get_bd_pins npu_v2_axi_wrapper_0/aresetn]
   connect_bd_net -net processing_system7_0_FCLK_CLK0  [get_bd_pins processing_system7_0/FCLK_CLK0] \
   [get_bd_pins proc_sys_reset_0/slowest_sync_clk] \
   [get_bd_pins axi_interconnect_0/ACLK] \
@@ -719,20 +757,21 @@ proc create_root_design { parentCell } {
   [get_bd_pins axi_interconnect_0/M05_ACLK] \
   [get_bd_pins smartconnect_1/aclk] \
   [get_bd_pins smartconnect_0/aclk] \
-  [get_bd_pins top_dma_stream_to_fu_0/aclk] \
   [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] \
   [get_bd_pins processing_system7_0/S_AXI_HP1_ACLK] \
   [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] \
   [get_bd_pins aes_dec_axi_wrapper_0/aclk] \
   [get_bd_pins fnd_axi_stream_wrapp_0/aclk] \
   [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] \
-  [get_bd_pins top_dma_full_to_stre_0/aclk] \
   [get_bd_pins aes_enc_axi_wrapper_0/aclk] \
-  [get_bd_pins npu_v2_axi_wrapper_0/aclk] \
   [get_bd_pins axi_interconnect_0/S01_ACLK] \
   [get_bd_pins axi_interconnect_0/S02_ACLK] \
   [get_bd_pins axi_interconnect_0/M06_ACLK] \
-  [get_bd_pins tft_lcd_axi_wrapper_0/aclk]
+  [get_bd_pins top_dma_stream_to_fu_0/aclk] \
+  [get_bd_pins top_dma_full_to_stre_0/aclk] \
+  [get_bd_pins system_ila_0/clk] \
+  [get_bd_pins tft_lcd_axi_wrapper_0/aclk] \
+  [get_bd_pins npu_v2_axi_wrapper_0/aclk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N  [get_bd_pins processing_system7_0/FCLK_RESET0_N] \
   [get_bd_pins proc_sys_reset_0/ext_reset_in]
   connect_bd_net -net tft_lcd_axi_wrapper_0_CS_N  [get_bd_pins tft_lcd_axi_wrapper_0/CS_N] \
@@ -780,15 +819,15 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x40004000 -range 0x00001000 -target_address_space [get_bd_addr_spaces tft_lcd_axi_wrapper_0/m_axi] [get_bd_addr_segs top_dma_full_to_stre_0/s_axi/reg0] -force
   assign_bd_address -offset 0x40005000 -range 0x00001000 -target_address_space [get_bd_addr_spaces tft_lcd_axi_wrapper_0/m_axi] [get_bd_addr_segs top_dma_stream_to_fu_0/s_axi/reg0] -force
   assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces top_dma_full_to_stre_0/m_axi] [get_bd_addr_segs processing_system7_0/S_AXI_HP1/HP1_DDR_LOWOCM] -force
-  assign_bd_address -offset 0x40000000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs aes_dec_axi_wrapper_0/s_axi/reg0] -force
-  assign_bd_address -offset 0x40001000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs aes_enc_axi_wrapper_0/s_axi/reg0] -force
   assign_bd_address -offset 0xC0000000 -range 0x00002000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
-  assign_bd_address -offset 0x40002000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs npu_v2_axi_wrapper_0/s_axi/reg0] -force
-  assign_bd_address -offset 0x40003000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs tft_lcd_axi_wrapper_0/s_axi/reg0] -force
-  assign_bd_address -offset 0x40004000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs top_dma_full_to_stre_0/s_axi/reg0] -force
-  assign_bd_address -offset 0x40005000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs top_dma_stream_to_fu_0/s_axi/reg0] -force
 
   # Exclude Address Segments
+  exclude_bd_addr_seg -offset 0x40000000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs aes_dec_axi_wrapper_0/s_axi/reg0]
+  exclude_bd_addr_seg -offset 0x40001000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs aes_enc_axi_wrapper_0/s_axi/reg0]
+  exclude_bd_addr_seg -offset 0x40002000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs npu_v2_axi_wrapper_0/s_axi/reg0]
+  exclude_bd_addr_seg -offset 0x40003000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs tft_lcd_axi_wrapper_0/s_axi/reg0]
+  exclude_bd_addr_seg -offset 0x40004000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs top_dma_full_to_stre_0/s_axi/reg0]
+  exclude_bd_addr_seg -offset 0x40005000 -range 0x00001000 -target_address_space [get_bd_addr_spaces npu_v2_axi_wrapper_0/m_axi_img] [get_bd_addr_segs top_dma_stream_to_fu_0/s_axi/reg0]
   exclude_bd_addr_seg -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0]
 
 
