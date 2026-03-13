@@ -1,0 +1,58 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 19:09:58 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_tft_lcd_axi_wrapper_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_tft_lcd_axi_wrapper_0_0 from xilinx.com:user:tft_lcd_axi_wrapper:1.1 (Rev. 2) to xilinx.com:user:tft_lcd_axi_wrapper:1.2 (Rev. 1)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 15:01:58 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_npu_axi_wrapper_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of soc_design_npu_axi_wrapper_0_0 from xilinx.com:user:npu_axi_wrapper:1.1 (Rev. 1) to xilinx.com:user:npu_axi_wrapper:1.2 (Rev. 1)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Mar 12 14:44:41 2026
+| Host         : user23-B80KV-AP35BKE running 64-bit Ubuntu 24.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'soc_design_npu_v2_axi_wrapper_0_2'
+
+1. Summary
+----------
+
+SUCCESS in the update of soc_design_npu_v2_axi_wrapper_0_2 (xilinx.com:user:npu_v2_axi_wrapper:1.0 (Rev. 5)) to current project options.
+
