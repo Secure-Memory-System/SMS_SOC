@@ -1,0 +1,301 @@
+Source compile order for 'synthesis' with fileset 'sources_1' in source management mode 'All':
+Index  File Name                                        Used_In      File_Type  Library          Ngc Wrapper  Full Path Name
+-----  -----------------------------------------------  -----------  ---------  ---------------  -----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_processing_system7_0_1.dcp            Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_processing_system7_0_1/soc_design_processing_system7_0_1.dcp
+2      soc_design_proc_sys_reset_0_1.dcp                Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_proc_sys_reset_0_1/soc_design_proc_sys_reset_0_1.dcp
+3      soc_design_top_dma_stream_to_fu_0_1.dcp          Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_top_dma_stream_to_fu_0_1/soc_design_top_dma_stream_to_fu_0_1.dcp
+4      soc_design_aes_dec_axi_wrapper_0_1.dcp           Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_dec_axi_wrapper_0_1/soc_design_aes_dec_axi_wrapper_0_1.dcp
+5      soc_design_aes_enc_axi_wrapper_0_1.dcp           Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_enc_axi_wrapper_0_1/soc_design_aes_enc_axi_wrapper_0_1.dcp
+6      soc_design_axi_interconnect_0_imp_xbar_1.dcp     Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_xbar_1/soc_design_axi_interconnect_0_imp_xbar_1.dcp
+7      soc_design_axi_interconnect_0_imp_auto_pc_6.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_6/soc_design_axi_interconnect_0_imp_auto_pc_6.dcp
+8      soc_design_axi_interconnect_0_imp_auto_pc_0.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_0/soc_design_axi_interconnect_0_imp_auto_pc_0.dcp
+9      soc_design_axi_interconnect_0_imp_auto_pc_1.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_1/soc_design_axi_interconnect_0_imp_auto_pc_1.dcp
+10     soc_design_axi_interconnect_0_imp_auto_pc_2.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_2/soc_design_axi_interconnect_0_imp_auto_pc_2.dcp
+11     soc_design_axi_interconnect_0_imp_auto_pc_3.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_3/soc_design_axi_interconnect_0_imp_auto_pc_3.dcp
+12     soc_design_axi_interconnect_0_imp_auto_pc_4.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_4/soc_design_axi_interconnect_0_imp_auto_pc_4.dcp
+13     soc_design_axi_interconnect_0_imp_auto_pc_5.dcp  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_auto_pc_5/soc_design_axi_interconnect_0_imp_auto_pc_5.dcp
+14     soc_design_smartconnect_0_0.dcp                  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_smartconnect_0_0/soc_design_smartconnect_0_0.dcp
+15     soc_design_smartconnect_1_0.dcp                  Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_smartconnect_1_0/soc_design_smartconnect_1_0.dcp
+16     xlconcat_v2_1_vl_rfs.v                           Synth & Sim  Verilog    xlconcat_v2_1_6  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/6120/hdl/xlconcat_v2_1_vl_rfs.v
+17     soc_design_xlconcat_0_0.v                        Synth        Verilog    xil_defaultlib   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_xlconcat_0_0/synth/soc_design_xlconcat_0_0.v
+18     soc_design_fnd_axi_stream_wrapp_0_0.dcp          Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_fnd_axi_stream_wrapp_0_0/soc_design_fnd_axi_stream_wrapp_0_0.dcp
+19     xlslice_v1_0_vl_rfs.v                            Synth & Sim  Verilog    xlslice_v1_0_4   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/a97c/hdl/xlslice_v1_0_vl_rfs.v
+20     soc_design_xlslice_0_1.v                         Synth        Verilog    xil_defaultlib   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_xlslice_0_1/synth/soc_design_xlslice_0_1.v
+21     soc_design_tft_lcd_axi_wrapper_0_0.dcp           Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_tft_lcd_axi_wrapper_0_0/soc_design_tft_lcd_axi_wrapper_0_0.dcp
+22     soc_design_blk_mem_gen_0_0.dcp                   Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_blk_mem_gen_0_0/soc_design_blk_mem_gen_0_0.dcp
+23     soc_design_axi_bram_ctrl_0_0.dcp                 Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_bram_ctrl_0_0/soc_design_axi_bram_ctrl_0_0.dcp
+24     soc_design_top_dma_full_to_stre_0_0.dcp          Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_top_dma_full_to_stre_0_0/soc_design_top_dma_full_to_stre_0_0.dcp
+25     soc_design_system_ila_0_0.dcp                    Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_system_ila_0_0/soc_design_system_ila_0_0.dcp
+26     soc_design_npu_v2_axi_wrapper_0_3.dcp            Synth        DCP        xil_defaultlib                c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_npu_v2_axi_wrapper_0_3/soc_design_npu_v2_axi_wrapper_0_3.dcp
+27     soc_design.v                                     Synth        Verilog    xil_defaultlib   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/synth/soc_design.v
+28     soc_design_wrapper.v                             Synth & Sim  Verilog    xil_defaultlib   No           C:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/hdl/soc_design_wrapper.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'sources_1' & with fileset 'constrs_1':
+Index  File Name           Used_In       Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ------------------  ------------  -------------  ---------------  ----------------  --------------  ----------------------------------------------------------------------------------------------------------------
+1      Zybo-Z7-Master.xdc  Synth & Impl                                  NORMAL                            C:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.srcs/constrs_1/imports/Downloads/Zybo-Z7-Master.xdc
+
+
+Missing instances for 'synthesis' with fileset 'sources_1':
+Index  Instance Path  File Path  Line
+-----  -------------  ---------  ----
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_processing_system7_0_1'
+| Top Module:                                'soc_design_processing_system7_0_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_processing_system7_0_1' in source management mode 'All':
+Index  File Name                                      Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  ---------------------------------------------  -----------  ---------  --------------  -----------  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      processing_system7_vip_v1_0_21_local_params.v  Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_local_params.v
+2      processing_system7_vip_v1_0_21_reg_params.v    Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_reg_params.v
+3      processing_system7_vip_v1_0_21_reg_init.v      Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_reg_init.v
+4      processing_system7_vip_v1_0_21_apis.v          Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_apis.v
+5      processing_system7_vip_v1_0_21_unused_ports.v  Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_unused_ports.v
+6      processing_system7_vip_v1_0_21_axi_gp.v        Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_axi_gp.v
+7      processing_system7_vip_v1_0_21_axi_acp.v       Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_axi_acp.v
+8      processing_system7_vip_v1_0_21_axi_hp.v        Synth & Sim  VHeader    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/86fe/hdl/processing_system7_vip_v1_0_21_axi_hp.v
+9      processing_system7_v5_5_aw_atc.v               Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8fd3/hdl/verilog/processing_system7_v5_5_aw_atc.v
+10     processing_system7_v5_5_b_atc.v                Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8fd3/hdl/verilog/processing_system7_v5_5_b_atc.v
+11     processing_system7_v5_5_w_atc.v                Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8fd3/hdl/verilog/processing_system7_v5_5_w_atc.v
+12     processing_system7_v5_5_atc.v                  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8fd3/hdl/verilog/processing_system7_v5_5_atc.v
+13     processing_system7_v5_5_trace_buffer.v         Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8fd3/hdl/verilog/processing_system7_v5_5_trace_buffer.v
+14     processing_system7_v5_5_processing_system7.v   Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_processing_system7_0_1/hdl/verilog/processing_system7_v5_5_processing_system7.v
+15     soc_design_processing_system7_0_1.v            Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_processing_system7_0_1/synth/soc_design_processing_system7_0_1.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_processing_system7_0_1':
+Index  File Name                              Used_In       Scoped_To_Ref                      Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  -------------------------------------  ------------  ---------------------------------  ---------------  ----------------  --------------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_processing_system7_0_1.xdc  Synth & Impl  soc_design_processing_system7_0_1  inst             EARLY                             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_processing_system7_0_1/soc_design_processing_system7_0_1.xdc
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_proc_sys_reset_0_1'
+| Top Module:                                'soc_design_proc_sys_reset_0_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_proc_sys_reset_0_1' in source management mode 'All':
+Index  File Name                          Used_In      File_Type  Library                 Ngc Wrapper  Full Path Name
+-----  ---------------------------------  -----------  ---------  ----------------------  -----------  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      lib_cdc_v1_0_rfs.vhd               Synth & Sim  VHDL       lib_cdc_v1_0_3          No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/2a4f/hdl/lib_cdc_v1_0_rfs.vhd
+2      proc_sys_reset_v5_0_vh_rfs.vhd     Synth & Sim  VHDL       proc_sys_reset_v5_0_16  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0831/hdl/proc_sys_reset_v5_0_vh_rfs.vhd
+3      soc_design_proc_sys_reset_0_1.vhd  Synth        VHDL       xil_defaultlib          No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_proc_sys_reset_0_1/synth/soc_design_proc_sys_reset_0_1.vhd
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_proc_sys_reset_0_1':
+Index  File Name                                Used_In       Scoped_To_Ref                  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------------------------------------  ------------  -----------------------------  ---------------  ----------------  --------------  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_proc_sys_reset_0_1_ooc.xdc    Synth & Impl  soc_design_proc_sys_reset_0_1  U0               EARLY             yes             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_proc_sys_reset_0_1/soc_design_proc_sys_reset_0_1_ooc.xdc
+2      soc_design_proc_sys_reset_0_1_board.xdc  Synth & Impl  soc_design_proc_sys_reset_0_1  U0               EARLY                             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_proc_sys_reset_0_1/soc_design_proc_sys_reset_0_1_board.xdc
+3      soc_design_proc_sys_reset_0_1.xdc        Synth & Impl  soc_design_proc_sys_reset_0_1  U0               EARLY                             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_proc_sys_reset_0_1/soc_design_proc_sys_reset_0_1.xdc
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_axi_interconnect_0_imp_xbar_1'
+| Top Module:                                'soc_design_axi_interconnect_0_imp_xbar_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_axi_interconnect_0_imp_xbar_1' in source management mode 'All':
+Index  File Name                                   Used_In      File_Type  Library                     Ngc Wrapper  Full Path Name
+-----  ------------------------------------------  -----------  ---------  --------------------------  -----------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      generic_baseblocks_v2_1_vl_rfs.v            Synth & Sim  Verilog    generic_baseblocks_v2_1_2   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v
+2      axi_infrastructure_v1_1_0.vh                Synth & Sim  VHeader    xil_defaultlib              No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ec67/hdl/axi_infrastructure_v1_1_0.vh
+3      axi_infrastructure_v1_1_vl_rfs.v            Synth & Sim  Verilog    axi_infrastructure_v1_1_0   No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v
+4      axi_register_slice_v2_1_vl_rfs.v            Synth & Sim  Verilog    axi_register_slice_v2_1_33  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/3ee4/hdl/axi_register_slice_v2_1_vl_rfs.v
+5      blk_mem_gen_v8_4_vhsyn_rfs.vhd              Synth        VHDL       blk_mem_gen_v8_4_9          No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/5ec1/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
+6      fifo_generator_v13_2_vhsyn_rfs.vhd          Synth        VHDL       fifo_generator_v13_2_11     No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/6080/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd
+7      axi_data_fifo_v2_1_vl_rfs.v                 Synth & Sim  Verilog    axi_data_fifo_v2_1_32       No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/65ce/hdl/axi_data_fifo_v2_1_vl_rfs.v
+8      axi_crossbar_v2_1_vl_rfs.v                  Synth & Sim  Verilog    axi_crossbar_v2_1_34        No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/a7e3/hdl/axi_crossbar_v2_1_vl_rfs.v
+9      soc_design_axi_interconnect_0_imp_xbar_1.v  Synth        Verilog    xil_defaultlib              No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_xbar_1/synth/soc_design_axi_interconnect_0_imp_xbar_1.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_axi_interconnect_0_imp_xbar_1':
+Index  File Name                                         Used_In       Scoped_To_Ref                             Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ------------------------------------------------  ------------  ----------------------------------------  ---------------  ----------------  --------------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_axi_interconnect_0_imp_xbar_1_ooc.xdc  Synth & Impl  soc_design_axi_interconnect_0_imp_xbar_1  inst             EARLY             yes             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_interconnect_0_imp_xbar_1/soc_design_axi_interconnect_0_imp_xbar_1_ooc.xdc
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_fnd_axi_stream_wrapp_0_0'
+| Top Module:                                'soc_design_fnd_axi_stream_wrapp_0_0'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_fnd_axi_stream_wrapp_0_0' in source management mode 'All':
+Index  File Name                              Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  -------------------------------------  -----------  ---------  --------------  -----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      fnd_cntr.v                             Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/6fe5/src/fnd_cntr.v
+2      fnd_sub_module.v                       Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/6fe5/src/fnd_sub_module.v
+3      fnd_cntr_wrapper.v                     Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/6fe5/src/fnd_cntr_wrapper.v
+4      soc_design_fnd_axi_stream_wrapp_0_0.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_fnd_axi_stream_wrapp_0_0/synth/soc_design_fnd_axi_stream_wrapp_0_0.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_fnd_axi_stream_wrapp_0_0':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_blk_mem_gen_0_0'
+| Top Module:                                'soc_design_blk_mem_gen_0_0'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_blk_mem_gen_0_0' in source management mode 'All':
+Index  File Name                       Used_In  File_Type  Library             Ngc Wrapper  Full Path Name
+-----  ------------------------------  -------  ---------  ------------------  -----------  -----------------------------------------------------------------------------------------------------------------------------------------------------------
+1      blk_mem_gen_v8_4_vhsyn_rfs.vhd  Synth    VHDL       blk_mem_gen_v8_4_9  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/5ec1/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
+2      soc_design_blk_mem_gen_0_0.vhd  Synth    VHDL       xil_defaultlib      No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_blk_mem_gen_0_0/synth/soc_design_blk_mem_gen_0_0.vhd
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_blk_mem_gen_0_0':
+Index  File Name                           Used_In       Scoped_To_Ref               Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ----------------------------------  ------------  --------------------------  ---------------  ----------------  --------------  ---------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_blk_mem_gen_0_0_ooc.xdc  Synth & Impl  soc_design_blk_mem_gen_0_0  U0               EARLY             yes             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_blk_mem_gen_0_0/soc_design_blk_mem_gen_0_0_ooc.xdc
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_axi_bram_ctrl_0_0'
+| Top Module:                                'soc_design_axi_bram_ctrl_0_0'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_axi_bram_ctrl_0_0' in source management mode 'All':
+Index  File Name                         Used_In      File_Type  Library                Ngc Wrapper  Full Path Name
+-----  --------------------------------  -----------  ---------  ---------------------  -----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      axi_bram_ctrl_v4_1_rfs.vhd        Synth & Sim  VHDL       axi_bram_ctrl_v4_1_11  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/df79/hdl/axi_bram_ctrl_v4_1_rfs.vhd
+2      soc_design_axi_bram_ctrl_0_0.vhd  Synth        VHDL       xil_defaultlib         No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_bram_ctrl_0_0/synth/soc_design_axi_bram_ctrl_0_0.vhd
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_axi_bram_ctrl_0_0':
+Index  File Name                             Used_In       Scoped_To_Ref                 Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ------------------------------------  ------------  ----------------------------  ---------------  ----------------  --------------  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      soc_design_axi_bram_ctrl_0_0_ooc.xdc  Synth & Impl  soc_design_axi_bram_ctrl_0_0  U0               EARLY             yes             c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_axi_bram_ctrl_0_0/soc_design_axi_bram_ctrl_0_0_ooc.xdc
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_top_dma_stream_to_fu_0_1'
+| Top Module:                                'soc_design_top_dma_stream_to_fu_0_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_top_dma_stream_to_fu_0_1' in source management mode 'All':
+Index  File Name                              Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  -------------------------------------  -----------  ---------  --------------  -----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      fifo_sync_fwft.v                       Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ae91/src/fifo_sync_fwft.v
+2      stream_read_master.v                   Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ae91/src/stream_read_master.v
+3      write_master.v                         Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ae91/src/write_master.v
+4      top_dma_stream_to_full.v               Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/ae91/src/top_dma_stream_to_full.v
+5      soc_design_top_dma_stream_to_fu_0_1.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_top_dma_stream_to_fu_0_1/synth/soc_design_top_dma_stream_to_fu_0_1.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_top_dma_stream_to_fu_0_1':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_top_dma_full_to_stre_0_0'
+| Top Module:                                'soc_design_top_dma_full_to_stre_0_0'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_top_dma_full_to_stre_0_0' in source management mode 'All':
+Index  File Name                              Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  -------------------------------------  -----------  ---------  --------------  -----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      fifo_sync_fwft.v                       Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0905/src/fifo_sync_fwft.v
+2      read_master.v                          Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0905/src/read_master.v
+3      stream_write_master.v                  Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0905/src/stream_write_master.v
+4      top_dma_full_to_stream.v               Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/0905/src/top_dma_full_to_stream.v
+5      soc_design_top_dma_full_to_stre_0_0.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_top_dma_full_to_stre_0_0/synth/soc_design_top_dma_full_to_stre_0_0.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_top_dma_full_to_stre_0_0':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_npu_v2_axi_wrapper_0_3'
+| Top Module:                                'soc_design_npu_v2_axi_wrapper_0_3'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_npu_v2_axi_wrapper_0_3' in source management mode 'All':
+Index  File Name                            Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  -----------------------------------  -----------  ---------  --------------  -----------  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      npu_v2_sub_module.v                  Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/fca4/src/npu_v2_sub_module.v
+2      npu_v2_top.v                         Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/fca4/src/npu_v2_top.v
+3      npu_v2_axi_wrapper.v                 Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/fca4/src/npu_v2_axi_wrapper.v
+4      soc_design_npu_v2_axi_wrapper_0_3.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_npu_v2_axi_wrapper_0_3/synth/soc_design_npu_v2_axi_wrapper_0_3.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_npu_v2_axi_wrapper_0_3':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_aes_dec_axi_wrapper_0_1'
+| Top Module:                                'soc_design_aes_dec_axi_wrapper_0_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_aes_dec_axi_wrapper_0_1' in source management mode 'All':
+Index  File Name                             Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  ------------------------------------  -----------  ---------  --------------  -----------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      aes_128_inv_core.v                    Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/84aa/src/aes_128_inv_core.v
+2      aes_key_expansion.v                   Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/84aa/src/aes_key_expansion.v
+3      aes_dec_axi_wrapper.v                 Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/84aa/src/aes_dec_axi_wrapper.v
+4      soc_design_aes_dec_axi_wrapper_0_1.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_dec_axi_wrapper_0_1/synth/soc_design_aes_dec_axi_wrapper_0_1.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_aes_dec_axi_wrapper_0_1':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_aes_enc_axi_wrapper_0_1'
+| Top Module:                                'soc_design_aes_enc_axi_wrapper_0_1'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_aes_enc_axi_wrapper_0_1' in source management mode 'All':
+Index  File Name                             Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  ------------------------------------  -----------  ---------  --------------  -----------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      aes_128_core.v                        Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/4d06/src/aes_128_core.v
+2      aes_key_expansion.v                   Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/4d06/src/aes_key_expansion.v
+3      aes_enc_axi_wrapper.v                 Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/4d06/src/aes_enc_axi_wrapper.v
+4      soc_design_aes_enc_axi_wrapper_0_1.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_aes_enc_axi_wrapper_0_1/synth/soc_design_aes_enc_axi_wrapper_0_1.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_aes_enc_axi_wrapper_0_1':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+
+----------------------------------------------------------
+| Compile Order for Out-of-Context BlockSet: 'soc_design_tft_lcd_axi_wrapper_0_0'
+| Top Module:                                'soc_design_tft_lcd_axi_wrapper_0_0'
+----------------------------------------------------------
+
+Source compile order for 'synthesis' with fileset 'soc_design_tft_lcd_axi_wrapper_0_0' in source management mode 'All':
+Index  File Name                             Used_In      File_Type  Library         Ngc Wrapper  Full Path Name
+-----  ------------------------------------  -----------  ---------  --------------  -----------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1      tft_lcd_top.v                         Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8ed8/src/tft_lcd_top.v
+2      tft_lcd_write_master.v                Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8ed8/src/tft_lcd_write_master.v
+3      tft_lcd_sub_module.sv                 Synth & Sim  SVerilog   xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8ed8/src/tft_lcd_sub_module.sv
+4      tft_lcd_axi_wrapper.v                 Synth & Sim  Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ipshared/8ed8/src/tft_lcd_axi_wrapper.v
+5      soc_design_tft_lcd_axi_wrapper_0_0.v  Synth        Verilog    xil_defaultlib  No           c:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.gen/sources_1/bd/soc_design/ip/soc_design_tft_lcd_axi_wrapper_0_0/synth/soc_design_tft_lcd_axi_wrapper_0_0.v
+
+
+Constraint evaluation order for 'synthesis' with fileset 'soc_design_tft_lcd_axi_wrapper_0_0':
+Index  File Name  Used_In  Scoped_To_Ref  Scoped_To_Cells  Processing_Order  Out_Of_Context  Full Path Name
+-----  ---------  -------  -------------  ---------------  ----------------  --------------  --------------
+< empty >
+
+

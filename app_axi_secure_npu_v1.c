@@ -1,219 +1,202 @@
-/**
- * app_axi_secure_npu_v1.c
- *
- * 동작 흐름:
- *   LCD에 숫자를 그린 뒤 BTN0를 누르면 아래 파이프라인이 순차 실행됨.
- *
- *   [BTN0 press]
- *       ↓
- *   [1] TFT LCD write_master: 내부 BRAM(28×28) → BRAM_0(0xC000_0000)
- *       ↓  (DMA done)
- *   [2] NPU V2: BRAM_0 픽셀 읽기 → Conv/Pool/Dense → digit[3:0]
- *              NPU m_axis → AES Enc s_axis  (HW 직결, 자동 실행)
- *       ↓  (NPU done_latch)
- *   [3] DMA_S2F start: AES Enc 출력(128bit) 래치 → DRAM_ENC_BUF(16 bytes)
- *       ↓  (DMA done)
- *   [4] DMA_F2S start: DRAM_ENC_BUF → AES Dec s_axis  (HW 직결)
- *       ↓  (DMA done → AES Dec → xlslice[3:0] → FND)
- *   [5] TFT LCD 내부 BRAM 클리어 → 다음 입력 준비
+/*
+ * Secure Memory SoC - Full Pipeline Debug Code (Fixed & Continuous)
+ * Pipeline: LCD → BRAM → NPU → AES_ENC → DMA_S2F → DRAM → DMA_F2S → AES_DEC → FND
  */
 
+#include "xparameters.h"
 #include "xil_io.h"
 #include "xil_printf.h"
 #include "xgpiops.h"
 #include "sleep.h"
+#include "xil_cache.h"
 
-/* ─── Base Addresses ──────────────────────────────────────── */
-#define AES_DEC_BASE    0x40000000U
-#define AES_ENC_BASE    0x40001000U
-#define NPU_BASE        0x40002000U
-#define TFT_BASE        0x40003000U
-#define DMA_F2S_BASE    0x40004000U
-#define DMA_S2F_BASE    0x40005000U
+/* ============================================================
+ * 베이스 주소
+ * ============================================================ */
+#define AES_DEC_BASE    0x40000000UL
+#define AES_ENC_BASE    0x40001000UL
+#define NPU_BASE        0x40002000UL
+#define TFT_BASE        0x40003000UL
+#define DMA_F2S_BASE    0x40004000UL
+#define DMA_S2F_BASE    0x40005000UL
+#define BRAM_BASE       0x42000000UL   /* LCD DMA 목적지 */
+#define DRAM_ENC_BUF    0x00200000UL   /* 암호문 저장 DDR 영역 */
 
-/* ─── Register Offsets ────────────────────────────────────── */
-/* 공통 */
-#define REG_CTRL        0x00U   /* [0]=start (self-clear), TFT:[1]=bram_clear */
-#define REG_STAT        0x04U   /* [0]=done pulse, TFT:[1]=busy               */
-#define REG_ADDR        0x08U   /* DST_ADDR(S2F/TFT) or SRC_ADDR(F2S)        */
-#define REG_LEN         0x0CU   /* 전송 바이트 수                             */
+/* ============================================================
+ * GPIO (BTN0) - Zybo Z7 BTN0 = MIO 54번 핀
+ * ============================================================ */
+#define BTN0_PIN        54
 
-/* NPU 전용 */
-#define NPU_REG_STATUS  0x00U   /* read: [1]=done_latch, [0]=busy             */
-#define NPU_REG_DIGIT   0x08U   /* read: [3:0]=final_digit                    */
+/* ============================================================
+ * AES 128-bit 테스트 키
+ * ============================================================ */
+#define AES_KEY_W0      0x2B7E1516
+#define AES_KEY_W1      0x28AED2A6
+#define AES_KEY_W2      0xABF71588
+#define AES_KEY_W3      0x09CF4F3C
 
-/* AES enc/dec 키 레지스터 (0x00~0x0C) */
-#define AES_KEY_REG0    0x00U
-#define AES_KEY_REG1    0x04U
-#define AES_KEY_REG2    0x08U
-#define AES_KEY_REG3    0x0CU
-
-/* ─── 파라미터 ────────────────────────────────────────────── */
-#define TFT_BRAM_BASE   0xC0000000U /* BRAM_0(axi_bram_ctrl_0) 주소           */
-#define TFT_IMG_BYTES   784U        /* 28×28 = 784 bytes                      */
-#define DRAM_ENC_BUF    0x10000000U /* 암호문 임시 저장 (PS DRAM 미사용 영역) */
-#define ENC_DATA_BYTES  16U         /* AES-128 출력 = 128-bit = 16 bytes      */
-
-/* AES-128 키 (enc/dec 동일) */
-#define AES_KEY0        0x2B7E1516U
-#define AES_KEY1        0x28AED2A6U
-#define AES_KEY2        0xABF71588U
-#define AES_KEY3        0x09CF4F3CU
-
-/* GPIO */
-#define GPIO_DEVICE_ID  0
-#define BTN0_PIN        54          /* EMIO[0] = XGpioPs pin 54               */
-
-/* poll timeout (ms) */
-#define TIMEOUT_TFT_DMA     5000U
-#define TIMEOUT_NPU        10000U
-#define TIMEOUT_DMA_S2F     5000U
-#define TIMEOUT_DMA_F2S     5000U
-
-/* ─── 레지스터 접근 매크로 ───────────────────────────────── */
-#define WR(base, off, val)  Xil_Out32((u32)(base) + (u32)(off), (u32)(val))
-#define RD(base, off)       Xil_In32((u32)(base) + (u32)(off))
-
-/* ─── 비트 폴링 (timeout_ms 초과 시 -1 반환) ────────────── */
-static int poll_set(u32 base, u32 off, u32 mask, u32 timeout_ms)
-{
-    for (u32 t = 0; t < timeout_ms; t++) {
-        if (RD(base, off) & mask)
-            return 0;
-        usleep(1000);
+/* ============================================================
+ * 유틸리티 함수: 폴링 대기
+ * ============================================================ */
+static int poll_done(u32 base, u32 offset, u32 mask, u32 expected, const char* name) {
+    u32 cnt = 0;
+    u32 stat = 0;
+    while (cnt++ < 100000) { // 타임아웃 약 1초 (10us * 100000)
+        stat = Xil_In32(base + offset);
+        if ((stat & mask) == expected) {
+            return 0; // 성공
+        }
+        usleep(10);
     }
-    xil_printf("[ERR] poll_set timeout base=0x%08X off=0x%02X mask=0x%X\r\n",
-               base, off, mask);
+    xil_printf("[%s] ERROR: 타임아웃 발생! (STAT=0x%08X)\r\n", name, stat);
     return -1;
 }
 
-static int poll_clr(u32 base, u32 off, u32 mask, u32 timeout_ms)
-{
-    for (u32 t = 0; t < timeout_ms; t++) {
-        if (!(RD(base, off) & mask))
-            return 0;
-        usleep(1000);
-    }
-    xil_printf("[ERR] poll_clr timeout base=0x%08X off=0x%02X mask=0x%X\r\n",
-               base, off, mask);
-    return -1;
-}
-
-/* ─── AES 키 설정 ────────────────────────────────────────── */
-static void aes_set_key(u32 base)
-{
-    WR(base, AES_KEY_REG0, AES_KEY0);
-    WR(base, AES_KEY_REG1, AES_KEY1);
-    WR(base, AES_KEY_REG2, AES_KEY2);
-    WR(base, AES_KEY_REG3, AES_KEY3);
-}
-
-/* ─── 파이프라인 실행 ────────────────────────────────────── */
-static int run_pipeline(void)
-{
+/* ============================================================
+ * 메인 파이프라인 실행 함수
+ * ============================================================ */
+static void run_pipeline(int test_cnt) {
     int ret;
+    xil_printf("\r\n################################################\r\n");
+    xil_printf(" [TEST #%d] 새로운 파이프라인 사이클 시작\r\n", test_cnt);
+    xil_printf("################################################\r\n");
 
-    /* ══ Step 1: TFT LCD 내부 BRAM → BRAM_0 DMA 전송 ══════ */
-    xil_printf("[1] TFT write_master start (784 bytes → 0x%08X)\r\n",
-               TFT_BRAM_BASE);
+    /* 0. DRAM 버퍼 초기화 (이전 쓰레기값 제거) */
+    for (int i = 0; i < 4; i++) {
+        Xil_Out32(DRAM_ENC_BUF + i * 4, 0xDEADBEEF);
+    }
+    Xil_DCacheFlushRange(DRAM_ENC_BUF, 16);
 
-    WR(TFT_BASE, REG_ADDR, TFT_BRAM_BASE);
-    WR(TFT_BASE, REG_LEN,  TFT_IMG_BYTES);
-    WR(TFT_BASE, REG_CTRL, 0x1);           /* start */
+    /* --------------------------------------------------------
+     * STEP 1: LCD 터치패드 → BRAM 전송
+     * -------------------------------------------------------- */
+    xil_printf("[TFT] BRAM(0x%08X)으로 픽셀 전송 중...\r\n", BRAM_BASE);
+    Xil_Out32(TFT_BASE + 0x08, BRAM_BASE);
+    Xil_Out32(TFT_BASE + 0x0C, 784);
+    Xil_Out32(TFT_BASE + 0x00, 0x1);
 
-    /* busy[1] 올라올 때까지 잠시 대기 후, busy가 내려올 때 완료 */
-    poll_set(TFT_BASE, REG_STAT, 0x2, 100);    /* busy=1 확인 (최대 100ms) */
-    ret = poll_clr(TFT_BASE, REG_STAT, 0x2, TIMEOUT_TFT_DMA);
-    if (ret) return ret;
-    xil_printf("[1] TFT DMA done\r\n");
+    ret = poll_done(TFT_BASE, 0x04, 0x1, 0x1, "TFT_DMA");
+    if (ret != 0) return;
+    
+    /* 캐시 무효화 후 BRAM 덤프 시각화 */
+    Xil_DCacheInvalidateRange(BRAM_BASE, 784 * 4);
+    xil_printf("[DBG] BRAM 28x28 이미지 확인:\r\n");
+    for (int row = 0; row < 28; row++) {
+        for (int col = 0; col < 28; col++) {
+            int pixel_idx = row * 28 + col;
+            u32 word = Xil_In32(BRAM_BASE + (pixel_idx / 4) * 4);
+            u8 pixel = (word >> ((pixel_idx % 4) * 8)) & 0xFF;
+            
+            if (pixel > 128)      xil_printf("#");
+            else if (pixel > 0)   xil_printf(".");
+            else                  xil_printf(" ");
+        }
+        xil_printf("\r\n");
+    }
 
-    /* ══ Step 2: NPU 추론 시작 ════════════════════════════ */
-    /* NPU done 후 AXI-Stream으로 digit → AES Enc 자동 암호화.
-     * AES Enc는 output_valid=1로 결과를 유지하며 DMA_S2F가
-     * 준비될 때까지 기다림 (m_axis_tready 대기). */
-    xil_printf("[2] NPU start\r\n");
-    WR(NPU_BASE, REG_CTRL, 0x1);           /* start (self-clear) */
+    /* --------------------------------------------------------
+     * STEP 2: DMA S2F 대기 + NPU 추론 + AES 암호화
+     * -------------------------------------------------------- */
+    xil_printf("[SYS] NPU 연산 및 AES 암호화 파이프라인 가동...\r\n");
+    
+    /* DMA S2F (Stream to DRAM) 수신 대기 */
+    Xil_Out32(DMA_S2F_BASE + 0x08, DRAM_ENC_BUF);
+    Xil_Out32(DMA_S2F_BASE + 0x0C, 16); // 128-bit
+    Xil_Out32(DMA_S2F_BASE + 0x00, 0x1);
 
-    /* read 0x00: bit[1]=done_latch, bit[0]=busy */
-    ret = poll_set(NPU_BASE, NPU_REG_STATUS, 0x2, TIMEOUT_NPU);
-    if (ret) return ret;
+    /* NPU 가동 (오프셋 버그 수정됨: 0x00000000) */
+    Xil_Out32(NPU_BASE + 0x04, 0x00000000); 
+    Xil_Out32(NPU_BASE + 0x00, 0x00000001);
 
-    u32 digit = RD(NPU_BASE, NPU_REG_DIGIT) & 0xFU;
-    xil_printf("[2] NPU done → digit = %d\r\n", (int)digit);
+    /* NPU 및 DMA 완료 대기 */
+    if (poll_done(NPU_BASE, 0x00, 0x2, 0x2, "NPU") != 0) return;
+    if (poll_done(DMA_S2F_BASE, 0x04, 0x1, 0x1, "DMA_S2F") != 0) return;
 
-    /* ══ Step 3: DMA_S2F start → AES Enc 출력(16B) → DRAM ═ */
-    /* NPU 완료 시점에 AES Enc는 이미 암호화 완료 후 대기 중.
-     * DMA_S2F를 start하면 s_axis_tready 올라가며 즉시 수신. */
-    xil_printf("[3] DMA_S2F start (enc 16 bytes → 0x%08X)\r\n",
-               DRAM_ENC_BUF);
+    u32 npu_digit = Xil_In32(NPU_BASE + 0x08) & 0xF;
 
-    WR(DMA_S2F_BASE, REG_ADDR, DRAM_ENC_BUF);
-    WR(DMA_S2F_BASE, REG_LEN,  ENC_DATA_BYTES);
-    WR(DMA_S2F_BASE, REG_CTRL, 0x1);       /* start */
+    /* --------------------------------------------------------
+     * STEP 3: DRAM 암호화 데이터 확인
+     * -------------------------------------------------------- */
+    Xil_DCacheInvalidateRange(DRAM_ENC_BUF, 16);
+    u32 enc0 = Xil_In32(DRAM_ENC_BUF + 0x00);
+    u32 enc1 = Xil_In32(DRAM_ENC_BUF + 0x04);
+    u32 enc2 = Xil_In32(DRAM_ENC_BUF + 0x08);
+    u32 enc3 = Xil_In32(DRAM_ENC_BUF + 0x0C);
 
-    ret = poll_set(DMA_S2F_BASE, REG_STAT, 0x1, TIMEOUT_DMA_S2F);
-    if (ret) return ret;
-    xil_printf("[3] DMA_S2F done (encrypted data in DRAM)\r\n");
+    xil_printf("[DRAM] 기록된 암호문 (128-bit):\r\n");
+    xil_printf("  -> %08X_%08X_%08X_%08X\r\n", enc3, enc2, enc1, enc0);
 
-    /* ══ Step 4: DMA_F2S start → DRAM → AES Dec → FND ════ */
-    /* DMA_F2S가 DRAM에서 읽어 AXI-Stream으로 AES Dec에 전달.
-     * AES Dec → xlslice[3:0] → FND (모두 HW 자동). */
-    xil_printf("[4] DMA_F2S start (0x%08X → AES Dec → FND)\r\n",
-               DRAM_ENC_BUF);
+    /* --------------------------------------------------------
+     * STEP 4: 복호화 (DMA F2S -> AES DEC -> FND)
+     * -------------------------------------------------------- */
+    xil_printf("[SYS] AES 복호화 및 FND 출력 파이프라인 가동...\r\n");
+    Xil_DCacheFlushRange(DRAM_ENC_BUF, 16); // DMA 읽기 전 캐시 반영
+    
+    Xil_Out32(DMA_F2S_BASE + 0x08, DRAM_ENC_BUF);
+    Xil_Out32(DMA_F2S_BASE + 0x0C, 16);
+    Xil_Out32(DMA_F2S_BASE + 0x00, 0x1);
 
-    WR(DMA_F2S_BASE, REG_ADDR, DRAM_ENC_BUF);
-    WR(DMA_F2S_BASE, REG_LEN,  ENC_DATA_BYTES);
-    WR(DMA_F2S_BASE, REG_CTRL, 0x1);       /* start */
+    if (poll_done(DMA_F2S_BASE, 0x04, 0x1, 0x1, "DMA_F2S") != 0) return;
 
-    ret = poll_set(DMA_F2S_BASE, REG_STAT, 0x1, TIMEOUT_DMA_F2S);
-    if (ret) return ret;
-    xil_printf("[4] DMA_F2S done → FND displays %d\r\n", (int)digit);
+    /* --------------------------------------------------------
+     * 결과 요약
+     * -------------------------------------------------------- */
+    xil_printf("\r\n+-------------------------------------------+\r\n");
+    xil_printf("|  [최종 결과 요약]                         |\r\n");
+    xil_printf("|  NPU 판정 결과         : %u                |\r\n", npu_digit);
+    xil_printf("|  FND(7-Seg) 표시 상태   : 직접 확인 필요     |\r\n");
+    xil_printf("+-------------------------------------------+\r\n");
 
-    /* ══ Step 5: TFT LCD 내부 BRAM 클리어 ════════════════ */
-    WR(TFT_BASE, REG_CTRL, 0x2);           /* bram_clear (bit[1]) */
-    xil_printf("[5] TFT BRAM cleared. Draw next digit.\r\n");
-
-    return 0;
+    /* 다음 입력을 위해 LCD BRAM 초기화 */
+    Xil_Out32(TFT_BASE + 0x00, 0x2);
+    usleep(1000);
+    xil_printf("[SYS] 캔버스 초기화 완료. 다음 숫자를 그리고 BTN0을 누르세요!\r\n");
 }
 
-/* ─── main ───────────────────────────────────────────────── */
-int main(void)
-{
-    xil_printf("\r\n=== Secure NPU SoC App v1 ===\r\n");
-    xil_printf("Flow: TFT → BTN0 → NPU → AES_Enc → DMA → AES_Dec → FND\r\n\r\n");
+/* ============================================================
+ * main
+ * ============================================================ */
+int main(void) {
+    xil_printf("\r\n==============================================\r\n");
+    xil_printf("  Secure Memory SoC v1.0 (Full Pipeline)\r\n");
+    xil_printf("==============================================\r\n");
 
-    /* GPIO 초기화 */
-    XGpioPs      gpio;
-    XGpioPs_Config *cfg = XGpioPs_LookupConfig(GPIO_DEVICE_ID);
-    if (!cfg) {
-        xil_printf("[ERR] GPIO config not found\r\n");
-        return -1;
-    }
-    XGpioPs_CfgInitialize(&gpio, cfg, cfg->BaseAddr);
-    XGpioPs_SetDirectionPin(&gpio, BTN0_PIN, 0);  /* input */
+    /* 1. AES 키 설정 (루프 밖에서 최초 1회만) */
+    xil_printf("[INIT] AES 암호화/복호화 키 세팅 중...\r\n");
+    Xil_Out32(AES_ENC_BASE + 0x00, AES_KEY_W0);
+    Xil_Out32(AES_ENC_BASE + 0x04, AES_KEY_W1);
+    Xil_Out32(AES_ENC_BASE + 0x08, AES_KEY_W2);
+    Xil_Out32(AES_ENC_BASE + 0x0C, AES_KEY_W3);
 
-    /* AES 키 초기화 (enc/dec 동일) */
-    aes_set_key(AES_ENC_BASE);
-    aes_set_key(AES_DEC_BASE);
-    xil_printf("AES-128 keys initialized.\r\n");
-    xil_printf("Draw a digit on LCD, then press BTN0.\r\n\r\n");
+    Xil_Out32(AES_DEC_BASE + 0x00, AES_KEY_W0);
+    Xil_Out32(AES_DEC_BASE + 0x04, AES_KEY_W1);
+    Xil_Out32(AES_DEC_BASE + 0x08, AES_KEY_W2);
+    Xil_Out32(AES_DEC_BASE + 0x0C, AES_KEY_W3);
+    xil_printf("[INIT] 키 세팅 완료!\r\n");
 
-    u32 prev_btn = 0;
+    /* 2. GPIO 초기화 (BTN0) */
+    XGpioPs gpio;
+    XGpioPs_Config *gpio_cfg = XGpioPs_LookupConfig(0);
+    XGpioPs_CfgInitialize(&gpio, gpio_cfg, XPAR_XGPIOPS_0_BASEADDR);
+    XGpioPs_SetDirectionPin(&gpio, BTN0_PIN, 0); 
+    xil_printf("[GPIO] BTN0 초기화 완료. 터치패드 대기 중...\r\n");
 
+    u32 btn_prev = 0;
+    int test_cnt = 1;
+
+    /* 3. 무한 폴링 루프 (버튼 클릭 감지) */
     while (1) {
-        u32 btn = XGpioPs_ReadPin(&gpio, BTN0_PIN);
+        u32 btn_now = XGpioPs_ReadPin(&gpio, BTN0_PIN);
 
-        /* rising edge 감지 */
-        if (btn && !prev_btn) {
-            usleep(20000);  /* 20ms debounce */
-            if (XGpioPs_ReadPin(&gpio, BTN0_PIN)) {
-                xil_printf("──── BTN0 pressed ────\r\n");
-                if (run_pipeline() != 0)
-                    xil_printf("[ERR] Pipeline failed!\r\n");
-                xil_printf("\r\n");
+        /* 버튼 상승 엣지(Rising Edge) 감지 */
+        if (btn_now == 1 && btn_prev == 0) {
+            usleep(20000);  /* 디바운싱 20ms */
+            if (XGpioPs_ReadPin(&gpio, BTN0_PIN) == 1) {
+                run_pipeline(test_cnt++);
             }
         }
-        prev_btn = btn;
+        btn_prev = btn_now;
+        usleep(10000);  /* 10ms 단위 폴링 */
     }
 
     return 0;
