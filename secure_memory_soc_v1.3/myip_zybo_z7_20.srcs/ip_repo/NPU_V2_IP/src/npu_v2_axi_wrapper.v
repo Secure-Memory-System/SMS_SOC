@@ -82,7 +82,6 @@ module npu_v2_axi_wrapper #(
     reg [31:0] slv_reg1;   // BRAM 오프셋 주소
     
     reg bvalid_reg;
-    // 기존 코드 제거하고 아래로 교체
     reg aw_latched, w_latched;
     reg [4:0] aw_addr_lat;
     reg [31:0] w_data_lat;
@@ -231,7 +230,7 @@ module npu_v2_axi_wrapper #(
     assign m_axi_img_arvalid = (pf_state == PF_STREAM) && !ar_pending && !word_valid && (word_count < 8'd196);
     assign m_axi_img_araddr = BRAM_ADDR_BASE + slv_reg1 + {22'd0, word_count, 2'b00};
 
-    wire npu_pixel_ready_w; // [추가됨] NPU로부터 받을 Ready 신호
+    wire npu_pixel_ready_w;
 
     // ── pixel 래치 및 핸드셰이킹 로직 ───────────────────────────────────────
     always @(posedge aclk) begin
@@ -251,7 +250,7 @@ module npu_v2_axi_wrapper #(
                 byte_sel   <= 2'd1;                 // 다음은 Byte 1
                 word_valid <= 1'b1;
             end 
-            // [수정됨] 무조건 넘기지 않고, NPU가 픽셀을 먹었을 때(Ready)만 다음으로 넘어감
+            // NPU가 픽셀을 소비했을 때(Ready)만 다음 바이트로 진행
             else if (word_valid && pixel_en_r && npu_pixel_ready_w) begin
                 if (byte_sel == 2'd0) begin
                     // Byte 3까지 NPU에 모두 밀어넣음 -> 새 AXI Read를 위해 비움
@@ -317,7 +316,7 @@ module npu_v2_axi_wrapper #(
         .buf_idx     (buf_idx_w),
         .final_digit (final_digit_w),
         .result_valid(result_valid_w),
-        .pixel_ready (npu_pixel_ready_w)  // [추가됨] 신호 연결
+        .pixel_ready (npu_pixel_ready_w)
     );
 
     // =========================================================

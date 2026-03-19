@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="68" Path="C:/Users/user/Desktop/vivado/myip_zybo_z7_20/myip_zybo_z7_20.xpr">
+<Project Product="Vivado" Version="7" Minor="68" Path="/media/user23/data/project_AXI_DMA/SMS_SOC/secure_memory_soc_v1.3/myip_zybo_z7_20.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="cdf0ee2a74ab4df8a3560c4c783da07c"/>
@@ -44,19 +44,16 @@
     <Option Name="SimulatorGccVersionRiviera" Val="9.3.0"/>
     <Option Name="SimulatorGccVersionActiveHdl" Val="9.3.0"/>
     <Option Name="BoardPart" Val="digilentinc.com:zybo-z7-20:part0:1.1"/>
-    <Option Name="BoardPartRepoPaths" Val="$PPRDIR/../../../AppData/Roaming/Xilinx/Vivado/2024.2/xhub/board_store/xilinx_board_store"/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/NPU_V2_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/TFT_LCD_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/FND_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/AES_Decryption_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/AES_Encryption_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/DMA_Full_to_Stream_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/DMA_Stream_to_Full_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/NPU_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../../../AppData/Roaming/Xilinx/ip_repo"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/AES_Decryption_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/AES_Encryption_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/DMA_Full_to_Stream_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/DMA_Stream_to_Full_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/FND_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/ip_repo/TFT_LCD_IP"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPDefaultOutputPath" Val="$PGENDIR/sources_1"/>
     <Option Name="IPCachePermission" Val="read"/>
@@ -69,19 +66,19 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="zybo-z7-20"/>
-    <Option Name="WTXSimLaunchSim" Val="124"/>
+    <Option Name="WTXSimLaunchSim" Val="132"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="131"/>
-    <Option Name="WTModelSimExportSim" Val="131"/>
-    <Option Name="WTQuestaExportSim" Val="131"/>
+    <Option Name="WTXSimExportSim" Val="133"/>
+    <Option Name="WTModelSimExportSim" Val="133"/>
+    <Option Name="WTQuestaExportSim" Val="133"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="0"/>
-    <Option Name="WTRivieraExportSim" Val="131"/>
+    <Option Name="WTVcsExportSim" Val="2"/>
+    <Option Name="WTRivieraExportSim" Val="133"/>
     <Option Name="WTActivehdlExportSim" Val="131"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
@@ -150,111 +147,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_v2_sub_module.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_v2_top.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_v2_axi_wrapper.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tft_lcd_top.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tft_lcd_write_master.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tft_lcd_sub_module.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tft_lcd_axi_wrapper.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/fnd_cntr.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/fnd_sub_module.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/fnd_cntr_wrapper.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/fifo_sync_fwft.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/stream_read_master.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/write_master.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/top_dma_stream_to_full.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -286,79 +179,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/flatten_dense.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/line buffer.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/max_pooling.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_controller.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_top.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/universal_pe.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/npu_axi_wrapper.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/aes_128_core.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/aes_key_expansion.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/aes_enc_axi_wrapper.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -382,67 +203,240 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../ip_repo/AES_Decryption_IP/component.xml">
-        <FileInfo SFType="IPXACT"/>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_weights_filter_1.txt">
+      <File Path="$PSRCDIR/sources_1/new/aes_enc_axi_wrapper.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_weights_filter_1.txt"/>
-          <Attr Name="ImportTime" Val="1773202690"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_bias.txt">
+      <File Path="$PSRCDIR/sources_1/new/aes_key_expansion.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_bias.txt"/>
-          <Attr Name="ImportTime" Val="1773202682"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_weights_filter_2.txt">
+      <File Path="$PSRCDIR/sources_1/new/flatten_dense.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_weights_filter_2.txt"/>
-          <Attr Name="ImportTime" Val="1773202694"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_dense_1_weights.txt">
+      <File Path="$PSRCDIR/sources_1/new/fnd_cntr.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_dense_1_weights.txt"/>
-          <Attr Name="ImportTime" Val="1773202705"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_weights_filter_3.txt">
+      <File Path="$PSRCDIR/sources_1/new/fnd_cntr_wrapper.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_weights_filter_3.txt"/>
-          <Attr Name="ImportTime" Val="1773202696"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_weights_filter_0.txt">
+      <File Path="$PSRCDIR/sources_1/new/fnd_sub_module.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_weights_filter_0.txt"/>
-          <Attr Name="ImportTime" Val="1773202686"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_dense_1_bias.txt">
+      <File Path="$PSRCDIR/sources_1/new/line buffer.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_dense_1_bias.txt"/>
-          <Attr Name="ImportTime" Val="1773202702"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_dense_weights.txt">
+      <File Path="$PSRCDIR/sources_1/new/max_pooling.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_dense_weights.txt"/>
-          <Attr Name="ImportTime" Val="1773202711"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_conv2d_weights_filter_4.txt">
+      <File Path="$PSRCDIR/sources_1/new/npu_axi_wrapper.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_conv2d_weights_filter_4.txt"/>
-          <Attr Name="ImportTime" Val="1773202700"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Downloads/55_dense_bias.txt">
+      <File Path="$PSRCDIR/sources_1/new/npu_controller.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/55_dense_bias.txt"/>
-          <Attr Name="ImportTime" Val="1773202709"/>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/npu_top.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/npu_v2_axi_wrapper.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/npu_v2_sub_module.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/npu_v2_top.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/stream_read_master.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/tft_lcd_axi_wrapper.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/tft_lcd_top.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/tft_lcd_write_master.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/top_dma_stream_to_full.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/universal_pe.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/write_master.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/tft_lcd_sub_module.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_weights_filter_3.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_3.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_weights_filter_2.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_2.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_bias.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_bias.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_weights_filter_0.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_0.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_dense_1_bias.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_dense_1_bias.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_dense_1_weights.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_dense_1_weights.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_weights_filter_1.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_1.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_conv2d_weights_filter_4.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_4.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_dense_bias.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_dense_bias.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/55_dense_weights.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PSRCDIR/ip_repo/NPU_V2_IP/src/55_dense_weights.txt"/>
+          <Attr Name="ImportTime" Val="1773637781"/>
         </FileInfo>
       </File>
       <Config>
@@ -466,18 +460,18 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/imports/tb_npu_v2/tb_npu_v2_axi_wrapper.v">
+      <File Path="$PSRCDIR/sim_1/new/tb_enc_dec.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../tb_npu_v2/tb_npu_v2_axi_wrapper.v"/>
-          <Attr Name="ImportTime" Val="1773170004"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/new/tb_enc_dec.v">
+      <File Path="$PSRCDIR/sim_1/imports/tb_npu_v2/tb_npu_v2_axi_wrapper.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../tb_npu_v2/tb_npu_v2_axi_wrapper.v"/>
+          <Attr Name="ImportTime" Val="1773170004"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -626,7 +620,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_npu_v2_axi_wrapper"/>
+        <Option Name="TopModule" Val="tb_enc_dec"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
@@ -692,12 +686,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="soc_design_npu_v2_axi_wrapper_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/soc_design_npu_v2_axi_wrapper_0_3" RelGenDir="$PGENDIR/soc_design_npu_v2_axi_wrapper_0_3">
-      <Config>
-        <Option Name="TopModule" Val="soc_design_npu_v2_axi_wrapper_0_3"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="soc_design_top_dma_stream_to_fu_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/soc_design_top_dma_stream_to_fu_0_1" RelGenDir="$PGENDIR/soc_design_top_dma_stream_to_fu_0_1">
       <Config>
         <Option Name="TopModule" Val="soc_design_top_dma_stream_to_fu_0_1"/>
@@ -728,6 +716,12 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="soc_design_npu_v2_axi_wrapper_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/soc_design_npu_v2_axi_wrapper_0_3" RelGenDir="$PGENDIR/soc_design_npu_v2_axi_wrapper_0_3">
+      <Config>
+        <Option Name="TopModule" Val="soc_design_npu_v2_axi_wrapper_0_3"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -740,11 +734,14 @@
     <Simulator Name="Questa">
       <Option Name="Description" Val="Questa Advanced Simulator"/>
     </Simulator>
+    <Simulator Name="Xcelium">
+      <Option Name="Description" Val="Xcelium Parallel Simulator"/>
+    </Simulator>
+    <Simulator Name="VCS">
+      <Option Name="Description" Val="Verilog Compiler Simulator (VCS)"/>
+    </Simulator>
     <Simulator Name="Riviera">
       <Option Name="Description" Val="Riviera-PRO Simulator"/>
-    </Simulator>
-    <Simulator Name="ActiveHDL">
-      <Option Name="Description" Val="Active-HDL Simulator"/>
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="22">
@@ -810,21 +807,7 @@
     </Run>
     <Run Id="soc_design_tft_lcd_axi_wrapper_0_0_synth_1" Type="Ft3:Synth" SrcSet="soc_design_tft_lcd_axi_wrapper_0_0" Part="xc7z020clg400-1" ConstrsSet="soc_design_tft_lcd_axi_wrapper_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="soc_design_npu_v2_axi_wrapper_0_3_synth_1" Type="Ft3:Synth" SrcSet="soc_design_npu_v2_axi_wrapper_0_3" Part="xc7z020clg400-1" ConstrsSet="soc_design_npu_v2_axi_wrapper_0_3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_npu_v2_axi_wrapper_0_3_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -834,9 +817,7 @@
     </Run>
     <Run Id="soc_design_top_dma_stream_to_fu_0_1_synth_1" Type="Ft3:Synth" SrcSet="soc_design_top_dma_stream_to_fu_0_1" Part="xc7z020clg400-1" ConstrsSet="soc_design_top_dma_stream_to_fu_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_top_dma_stream_to_fu_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_stream_to_fu_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_stream_to_fu_0_1_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -846,9 +827,7 @@
     </Run>
     <Run Id="soc_design_top_dma_full_to_stre_0_0_synth_1" Type="Ft3:Synth" SrcSet="soc_design_top_dma_full_to_stre_0_0" Part="xc7z020clg400-1" ConstrsSet="soc_design_top_dma_full_to_stre_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_top_dma_full_to_stre_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_full_to_stre_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_full_to_stre_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -858,9 +837,7 @@
     </Run>
     <Run Id="soc_design_fnd_axi_stream_wrapp_0_0_synth_1" Type="Ft3:Synth" SrcSet="soc_design_fnd_axi_stream_wrapp_0_0" Part="xc7z020clg400-1" ConstrsSet="soc_design_fnd_axi_stream_wrapp_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_fnd_axi_stream_wrapp_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_fnd_axi_stream_wrapp_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_fnd_axi_stream_wrapp_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -870,9 +847,7 @@
     </Run>
     <Run Id="soc_design_aes_dec_axi_wrapper_0_1_synth_1" Type="Ft3:Synth" SrcSet="soc_design_aes_dec_axi_wrapper_0_1" Part="xc7z020clg400-1" ConstrsSet="soc_design_aes_dec_axi_wrapper_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_aes_dec_axi_wrapper_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_aes_dec_axi_wrapper_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_aes_dec_axi_wrapper_0_1_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -882,9 +857,17 @@
     </Run>
     <Run Id="soc_design_aes_enc_axi_wrapper_0_1_synth_1" Type="Ft3:Synth" SrcSet="soc_design_aes_enc_axi_wrapper_0_1" Part="xc7z020clg400-1" ConstrsSet="soc_design_aes_enc_axi_wrapper_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_aes_enc_axi_wrapper_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_aes_enc_axi_wrapper_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_aes_enc_axi_wrapper_0_1_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="soc_design_npu_v2_axi_wrapper_0_3_synth_1" Type="Ft3:Synth" SrcSet="soc_design_npu_v2_axi_wrapper_0_3" Part="xc7z020clg400-1" ConstrsSet="soc_design_npu_v2_axi_wrapper_0_3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/soc_design_npu_v2_axi_wrapper_0_3_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -997,28 +980,7 @@
     </Run>
     <Run Id="soc_design_tft_lcd_axi_wrapper_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_tft_lcd_axi_wrapper_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_tft_lcd_axi_wrapper_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_tft_lcd_axi_wrapper_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="soc_design_npu_v2_axi_wrapper_0_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_npu_v2_axi_wrapper_0_3" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_npu_v2_axi_wrapper_0_3_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_impl_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1035,9 +997,7 @@
     </Run>
     <Run Id="soc_design_top_dma_stream_to_fu_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_top_dma_stream_to_fu_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_top_dma_stream_to_fu_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_stream_to_fu_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_stream_to_fu_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1054,9 +1014,7 @@
     </Run>
     <Run Id="soc_design_top_dma_full_to_stre_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_top_dma_full_to_stre_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_top_dma_full_to_stre_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_full_to_stre_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_top_dma_full_to_stre_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1073,9 +1031,7 @@
     </Run>
     <Run Id="soc_design_fnd_axi_stream_wrapp_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_fnd_axi_stream_wrapp_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_fnd_axi_stream_wrapp_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_fnd_axi_stream_wrapp_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_fnd_axi_stream_wrapp_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1092,9 +1048,7 @@
     </Run>
     <Run Id="soc_design_aes_dec_axi_wrapper_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_aes_dec_axi_wrapper_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_aes_dec_axi_wrapper_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_aes_dec_axi_wrapper_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_aes_dec_axi_wrapper_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1111,9 +1065,24 @@
     </Run>
     <Run Id="soc_design_aes_enc_axi_wrapper_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_aes_enc_axi_wrapper_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_aes_enc_axi_wrapper_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_aes_enc_axi_wrapper_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_aes_enc_axi_wrapper_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="soc_design_npu_v2_axi_wrapper_0_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="soc_design_npu_v2_axi_wrapper_0_3" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="soc_design_npu_v2_axi_wrapper_0_3_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/soc_design_npu_v2_axi_wrapper_0_3_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

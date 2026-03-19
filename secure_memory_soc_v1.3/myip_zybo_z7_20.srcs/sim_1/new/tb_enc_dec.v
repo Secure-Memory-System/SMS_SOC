@@ -48,7 +48,58 @@ module tb_enc_dec();
     always #5 clk = ~clk;
 
     // --------------------------------------------------
-    // 3. Test Sequence
+    // 3. 암호화 중간값 모니터링 (계층적 참조)
+    // --------------------------------------------------
+    always @(posedge clk) begin
+        // ROUND_OP 재진입 시 → 이전 라운드 MixColumns+AddRoundKey 결과 (Round 1~8)
+        if (u_enc_core.state == 3'd1 && u_enc_core.round_count > 1) begin
+            $display("[ENC] Round %-2d After MixColumns+AddKey  : %h",
+                      u_enc_core.round_count - 1, u_enc_core.state_reg);
+        end
+        // FINAL_RD 진입 시 → Round 9 MixColumns+AddRoundKey 결과
+        if (u_enc_core.state == 3'd3) begin
+            $display("[ENC] Round 9  After MixColumns+AddKey  : %h",
+                      u_enc_core.state_reg);
+        end
+        // enc_done 신호로 Round 10 최종 암호문 캡처 (state_reg = FINAL_RD 결과)
+        if (enc_done) begin
+            $display("[ENC] Round 10 Final Ciphertext          : %h", u_enc_core.state_reg);
+        end
+    end
+
+    // --------------------------------------------------
+    // 4. 복호화 중간값 모니터링 (negedge: posedge NBA 완료 후 안정된 값 캡처)
+    // --------------------------------------------------
+    always @(negedge clk) begin
+        // [진단] round_count가 0~9이면 복호화 진행 중 → 실제 state 값 출력
+        if (u_dec_core.round_count <= 4'd9) begin
+            $display("[DEC_DBG] negedge: state=%0d rc=%0d sr=%h",
+                      u_dec_core.state, u_dec_core.round_count, u_dec_core.state_reg);
+        end
+
+        // ROUND_OP 진입 후 → INITIAL 결과 (Round 10 AddKey), round_count==9
+        if (u_dec_core.state == 3'd3 && u_dec_core.round_count == 9) begin
+            $display("[DEC] Round 10 After InitialKey XOR      : %h",
+                      u_dec_core.state_reg);
+        end
+        // ROUND_OP 재진입 시 round_count 1~8 → InvMixColumns 결과 (Round 9~2)
+        if (u_dec_core.state == 3'd3 && u_dec_core.round_count >= 1 && u_dec_core.round_count <= 8) begin
+            $display("[DEC] Round %-2d After InvMixColumns       : %h",
+                      u_dec_core.round_count + 1, u_dec_core.state_reg);
+        end
+        // FINAL_RD 진입 후 → Round 1 InvMixColumns 결과
+        if (u_dec_core.state == 3'd5) begin
+            $display("[DEC] Round 1  After InvMixColumns       : %h",
+                      u_dec_core.state_reg);
+        end
+        // dec_done 신호로 Round 0 최종 복호화 결과 캡처
+        if (dec_done) begin
+            $display("[DEC] Round 0  Final Decrypted           : %h", decrypted_out);
+        end
+    end
+
+    // --------------------------------------------------
+    // 5. Test Sequence
     // --------------------------------------------------
     initial begin
         // 초기화

@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-// FORCE_RESYNTH_20260315
 module npu_conv2d_buf(
     input clk, reset_p,
     input start,
@@ -11,10 +10,9 @@ module npu_conv2d_buf(
                      value_03, value_04, value_05,
                      value_06, value_07, value_08,
     output reg valid_buf,
-    output wire pixel_ready  // [추가됨] 픽셀을 받을 준비가 되었는지 알리는 신호
+    output wire pixel_ready  // S_STREAM 상태이고 calc가 바쁘지 않을 때만 1
 );
 
-    // [추가됨] S_STREAM 상태이고 calc가 바쁘지 않을 때만 Ready를 1로 출력
     assign pixel_ready = (state == S_STREAM) && !calc_busy;
 
     localparam WIDTH = 28;
@@ -95,12 +93,12 @@ module npu_conv2d_calc(
     reg signed [7:0] bias [0:4];
 
     initial begin
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_0.txt", weight_0);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_1.txt", weight_1);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_2.txt", weight_2);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_3.txt", weight_3);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_weights_filter_4.txt", weight_4);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_conv2d_bias.txt", bias);
+        $readmemh("55_conv2d_weights_filter_0.txt", weight_0);
+        $readmemh("55_conv2d_weights_filter_1.txt", weight_1);
+        $readmemh("55_conv2d_weights_filter_2.txt", weight_2);
+        $readmemh("55_conv2d_weights_filter_3.txt", weight_3);
+        $readmemh("55_conv2d_weights_filter_4.txt", weight_4);
+        $readmemh("55_conv2d_bias.txt",             bias);
     end
 
     reg [3:0] k;
@@ -266,8 +264,8 @@ module npu_dense_integrated(
 
     integer i;
     initial begin
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_weights.txt", w_rom);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_bias.txt",    b_rom);
+        $readmemh("55_dense_weights.txt", w_rom);
+        $readmemh("55_dense_bias.txt",    b_rom);
         for(i=0; i<169; i=i+1) begin
             flat_mem0[i] = 0; flat_mem1[i] = 0; flat_mem2[i] = 0; 
             flat_mem3[i] = 0; flat_mem4[i] = 0;
@@ -401,8 +399,8 @@ module npu_output_layer(
     reg signed [7:0] w1_rom [0:49];
     reg signed [7:0] b1_rom [0:9];
     initial begin
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_1_weights.txt", w1_rom);
-        $readmemh("C:/Users/user/Desktop/vivado/ip_repo/NPU_V2_IP/src/55_dense_1_bias.txt",    b1_rom);
+        $readmemh("55_dense_1_weights.txt", w1_rom);
+        $readmemh("55_dense_1_bias.txt",    b1_rom);
     end
 
     reg [3:0] n_ptr;
