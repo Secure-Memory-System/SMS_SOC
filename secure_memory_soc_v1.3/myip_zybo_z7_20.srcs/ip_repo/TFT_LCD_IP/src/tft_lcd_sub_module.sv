@@ -486,14 +486,14 @@ module xpt2046(
     always@(posedge Clk50m or negedge Rst_n)
     if(!Rst_n)
         X_Value <= 12'd0;
-    else if(r_Get_Flag)
+    else if(Get_Flag)
         X_Value <= r_X_Value;
 
-    // 마지막 변환 결과를 필터링하기 위해 마지막 Y 결과를 출력으로 저장합니다. 마지막 변환 결과에는 보도 자료가 포함된 순간이 포함되어 있으므로 결과가 안정적이지 않습니다.        
+    // 마지막 변환 결과를 필터링하기 위해 마지막 Y 결과를 출력으로 저장합니다. 마지막 변환 결과에는 보도 자료가 포함된 순간이 포함되어 있으므로 결과가 안정적이지 않습니다.
     always@(posedge Clk50m or negedge Rst_n)
     if(!Rst_n)
         Y_Value <= 12'd0;
-    else if(r_Get_Flag)
+    else if(Get_Flag)
         Y_Value <= r_Y_Value;
 
 endmodule
